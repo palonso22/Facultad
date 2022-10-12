@@ -1,0 +1,19 @@
+
+Diagrama de la pila usada por f:
+================================
+
+Dir:      Contiene:                                                                                                         Ocupa n bytes en pila:
+===       =========                                                                                                         ======================
+rbp+0x18        ( 8 )-- #Valor de h apilado antes de entrar a f                                                                 8         
+rbp+0x10        ( 7 )-- #Valor de g apilado antes de entrar a f                                                                 8         
+rbp+0x8(*)      ( DR main )-- #Direccion de retorno de main (aca debe continuar ejecutandose el programa al teminar f)          8     
+rbp             ( rbp main )-- #rbp de main preservado  por la funcion f                                                        8        
+rbp-0x4         ( 31 )-- # Valor de a (codigo ascii de '1' en hexadecimal)                                                      4              
+rbp-0x8         ( 2 )--  #Valor de b                                                                                            4                    
+rbp-0xc         ( 33 )-- #Valor de c (codigo ascii de '3' en hexadecimal)                                                       4              
+rbp-0x10        ( 35 )-- #Valor de e (codigo ascii de '5'en hexadecimal)                                                        4              
+rbp-0x18        ( 4 )-- #Valor de d                                                                                             8        
+rbp-0x1c        ( 6 )-- #Valor de f                                                                                             4        
+
+
+(*)En esta direccion se almacena el valor de retorno de f

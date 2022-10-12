@@ -1,0 +1,13 @@
+
+
+
+La instruccion ldr reg, =valor es una pseudo-instruccion que
+en tiempo de compilación se traduce como:
+	ldr reg, [PC, #offset]
+Donde PC+offset es la direccion en la que  se almacena una instruccion que guarda valor.
+En nuestro caso:
+	ldr r1, =0x12abcdef
+Se traduce a:
+	ldr r1, [PC,#offset]
+Y en la direccion PC+offset se guarda la siguiente instruccion:
+	.long 0x12abcdef 

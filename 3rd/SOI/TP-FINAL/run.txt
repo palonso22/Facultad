@@ -1,0 +1,1 @@
+erl -sname principal -setcookie cookie -connect_all false

@@ -1,0 +1,24 @@
+def false = \ x y . y
+def true = \ x y . x
+def ite = \ b f g . b f g
+def pair = \ x y b . ite b x y
+def fst = \ p . p true
+def snd = \ p . p false
+def zero = false
+def succ = \ n s z . s ( n s z)
+def suma = \ n m . n succ m
+def prod = \ n m . n (suma m) zero
+def uno = succ zero
+def pot = \ n m . m (prod n) uno
+def aux = \ p . pair (succ ( fst p)) (fst p)
+def pred' = \ n . n aux (pair zero zero)
+def pred = \ n . snd (pred' n)
+def resta = \ n m . m pred n
+
+
+def leaf =  \ l b . l
+def bin = \ a t u l b . b a (t l b) (u l b)
+def isLeaf = \ t . t true aux2
+def aux2 = \ x y z. false
+def mapBin = \ t f . t leaf (\ a t u . bin (f a) t u)
+def mirrorBin = \ t . t leaf (\ a t u . bin a u t)
