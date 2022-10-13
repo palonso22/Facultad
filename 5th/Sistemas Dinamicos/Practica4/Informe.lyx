@@ -1,0 +1,1367 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 4 : Modelica}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:} Pablo Alonso
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se eligió completar los subsistemas 3,4 y 7 del trabajo práctico.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Mecánica Traslacional}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A continuación los resultados obtenidos modificando los parámetros b,k y
+ m(parámetro del amortiguador,parámetro del resorte y parámetro de la masa
+ respectivamente):
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=100,k=10000,m=0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig1.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=100,k=10000,m=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que el aumento de la masa reduce el movimiento puesto que aumenta
+ la fuerza de la misma y aumenta la fuerza de amortiguación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=100,k=100000,m=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=1000,k=100000,m=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig4.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El aumento de la constante del resorte disminuye la deformación del mismo,
+ dado que según la ley del resorte para una constante mayor se requiere
+ una menor deformación para obtener la misma fuerza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=1000,k=1000,m=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig5.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El aumento de la constante b de ambos amortiguadores causa que el movimiento
+ sea más acotado puesto que aumenta la fuerza amortiguadora de los mismos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+b=1000,b1=100,k=1000,m=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Traslational/fig6.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al decrementar la constante del amortiguador que está entre la masa y el
+ punto fijo, la masa adquiere mayor movimiento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Subsistema hidraúlico}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los parámetros que se van modificando en este modelo son R1 (resistencia
+ de la válvula 1), R2 (resistencia de la válvula 2), h (altura de la columna)
+ y P (presión de la fuente senoidal).
+\end_layout
+
+\begin_layout Standard
+R1=1e5,R2=1e5,h=3,P=50000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig1.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que el caudal de la columna disminuye a medida que el tanque
+ se va llenando puesto que la presión de las válvulas aumenta, reducienco
+ la cantidad de agua que pasa por las mismas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R1=1e5,R2=1e5,h=4,P=50000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al aumentar la altura de la columna, se observa que el tanque demora más
+ en llenarse puesto que el caudal disminuye.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R1=1e5,R2=1e5,h=3,P=500000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al aumentar la presión de la fuente senoidal el caudal aumenta, aumentando
+ también la cantidad de agua que le llega al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R1=1e6,R2=1e5,h=3,P=50000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig4.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R1=1e6,R2=1e6,h=3,P=50000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig5.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+R1=1e5,R2=1e6,h=3,P=50000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Hidraulico/fig6.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En cuando aumenta la presión de la segunda válvula, disminuye la cantidad
+ de agua que pasa por la misma disminuyendo el caudal de la columna y demorando
+ más en llenarse el tanque.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Subsistema hidraúlico- mecánico}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se modifican los parámetros F (fuerza de la fuenta senoidal) y A (área del
+ piston).
+\end_layout
+
+\begin_layout Standard
+F=450,A=0.01
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename HidroMecanico/fig1.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se aplica la fuerza senoidal sobre el piston, el cuál transforma esta fuerza
+ en una presión sobre la bomba y esta empieza a bombear agua al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+F=900,A=0.01
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename HidroMecanico/fig2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al aumentar la fueza ejercida sobre el pistón, la bomba genera más presión
+ enviando más agua al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+F=295,A=0.01
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename HidroMecanico/fig3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A diferencia del caso anterior, la fuerza ejercida sobre el pistón es menor,
+ enviando menor cantidad de agua al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+F=450,A=0.001
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename HidroMecanico/fig4.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al disminuir al tamaño del pistón, es menor la cantidad de fuerza requerida
+ para enviar agua al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+F=450,A=0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename HidroMecanico/fig5.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al aumentar el tamaño del pistón, es mayor la cantidad de fuerza requerida
+ para enviar agua al tanque.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Sistema completo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El motor eléctrico transforma la corriente en movimiento generando un torque
+ sobre la manivela, luego la biela empuja el pistón generando una presión
+ que succiona el agua de la cisterna y enviandola a la columna de agua,
+ donde finalmente llega al tanque.
+\end_layout
+
+\begin_layout Standard
+Dado que el funcionamiento del sistema se base en la energía originada en
+ el motor eléctrico, es lógico que al modificar los parámetros del mismo,
+ el funcionamiento del sistema completo cambie.
+\end_layout
+
+\begin_layout Standard
+v=400
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig1e.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig1a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig1b.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig1c.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig1.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v=800
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig2e.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig2a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig2b.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig2c.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig2.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De lo observado en los resultados se concluye que aumentar el voltaje de
+ la fuente de tensión aumenta la cantidad de corriente que sale del inductor,
+ dado que esta corriente es transformada en torque por el motor sobre el
+ eje de la manivela, se tiene que la fuerza transmitida por la biela también
+ crece, con lo cual es mayor la presión transmitida por el pistón y es mayor
+ el caudal en la columna de agua con lo cual llega una mayor cantidad de
+ agua al tanque.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observará como se comporta el sistema cuando se modifica el parámetro
+ de inducción (L), mientras que la fuente de voltaje permanecerá siempre
+ con el mismo parámetro V=800.
+\end_layout
+
+\begin_layout Standard
+L=0.001
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig3a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig3.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig6.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig9.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L=1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig30.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig30a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig30b.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig30c.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L=10
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig31.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig31a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig31b.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig31c.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L=100
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig4a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig4.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig7.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig10.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L=1000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig5a.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig5.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig8.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig11.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que al aumentar el parámetro de inducción L, disminuye la electricida
+d que circula por el inductor.
+ Esto se debe a la ecuación 
+\begin_inset Formula $L*der(i)=v\iff L=\frac{v}{der(i)}$
+\end_inset
+
+.
+ Si el parámetro 
+\begin_inset Formula $L$
+\end_inset
+
+ es mayor, 
+\begin_inset Formula $der(i)$
+\end_inset
+
+ no puede ser demasiado grande puesto que está diviendo al voltaje.
+ Esto causa que la corriente (i) viaje más lento.
+\end_layout
+
+\begin_layout Standard
+Se observará como se comporta el sistema modificando el radio de la manivela
+ y el largo de la biela (l y r respectivamente).
+ El parámetro de la fuente de voltaje permanecerá igual que antes y el parámetro
+ de inducción será l=0.001.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+l=1,r=0.01
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig15.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig16.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+l=1,r=0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig12.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig17.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+l=1,r=0.21
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig13.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig14.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+l=4,r=0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig18.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig21.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+l=0.3,r=0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig19.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename SistemaCompleto/fig20.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que tanto el radio de la manivela como el largo de la biela influye
+ directamente en la fuerza transmitida por la biela (F).
+ El pistón se encuentra en el extremo de la biela y convierte esta fuerza
+ en presión para sacar líquido de la cisterna.
+\end_layout
+
+\end_body
+\end_document

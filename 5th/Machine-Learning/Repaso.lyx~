@@ -1,0 +1,1076 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Repaso de Machine Learning
+\end_layout
+
+\begin_layout Subsection*
+Redes Neuronales
+\end_layout
+
+\begin_layout Standard
+Pros:
+\end_layout
+
+\begin_layout Itemize
+Permiten resolver problemas de regresión y clasificación.
+\end_layout
+
+\begin_layout Itemize
+Las entradas pueden tener altas dimensiones.
+\end_layout
+
+\begin_layout Itemize
+Resistentes al ruido.
+\end_layout
+
+\begin_layout Itemize
+Evaluación rápida.
+\end_layout
+
+\begin_layout Standard
+Contras:
+\end_layout
+
+\begin_layout Itemize
+Encontrar una solución puede llevar mucho tiempo.
+\end_layout
+
+\begin_layout Itemize
+La función de target es inentendible.
+\end_layout
+
+\begin_layout Standard
+Perceptrón
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $O(x)=sgn(w.x)$
+\end_inset
+
+ 
+\begin_inset Formula $x_{0}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Espacio de hipótesis: H = {w| w 
+\begin_inset Formula $\in$
+\end_inset
+
+ 
+\begin_inset Formula $\mathbb{R}^{n+1}$
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Standard
+Regla de entrenamiento: 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Delta_{w_{i}}=\eta(t-o)x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W_{i}\leftarrow w_{i}+\Delta w_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+converge a una solución cuando los datos son linealmente separables.
+\end_layout
+
+\begin_layout Standard
+Problema: Los datos deben ser linealmente separables.
+\end_layout
+
+\begin_layout Standard
+Solución: Definir función de costo que sea derivable: 
+\begin_inset Formula $E(w)=1/2*\sum_{D}(t-o)^{2}$
+\end_inset
+
+.
+ Luego se puede encontrar pesos 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ usando el método del descenso por gradiente para encontrar una solución.
+\end_layout
+
+\begin_layout Standard
+Nuevas reglas de actualización:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Delta w_{i}=-\eta\partial E/\partial W_{i}=\sum_{D}(t-o)w_{i}$
+\end_inset
+
+, hacemos que el vector w converga hacia una solución que representa un
+ mínimo local de la función de costo.
+\end_layout
+
+\begin_layout Standard
+Algoritmo de descenso por gradiente: Calcular correciones en batch y luego
+ corregir
+\end_layout
+
+\begin_layout Standard
+Problema : cae en mínimos locales.
+\end_layout
+
+\begin_layout Standard
+Solución: descenso por el gradiente estocástico: corregir pesos cada vez
+ que le presento un patrón.
+\end_layout
+
+\begin_layout Standard
+La regla se llama delta y converge a una solución cuando los datos no son
+ separables.
+\end_layout
+
+\begin_layout Standard
+Redes multicapa son capaces de representar superficies no lineales, usando
+ neuronas no lineales en la capa oculta.
+\end_layout
+
+\begin_layout Standard
+Se define la unidad diferenciable acotada:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $O(x)=\sigma(w.x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma(y)=1/(1+e^{-y})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial\sigma/\partial y=\sigma(y)(1-\sigma(y))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se necesita un algoritmo para aprender los pesos 
+\begin_inset Formula $w_{j}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $O=\sigma(w.x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma=1/(1+e^{-y})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial\sigma/\partial y=\sigma(y)(1-\sigma(y))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $E(w)=1/2\sum_{D}\sum_{k\in outputs}(t_{k}-o_{k})^{2}=\sum_{D}E_{d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial E_{d}/\partial W_{ij}=\partial E_{d}/\partial net_{j}.x_{ji}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unidad de salida k:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial E_{d}/\partial net_{k}=\partial E_{d}/\partial O_{k}\times\partial O_{k}/\partial net_{k}=-\delta_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial E_{d}/\partial_{O_{k}}=-(t_{k}-o_{k})$
+\end_inset
+
+ 
+\begin_inset Formula $\partial o_{k}/\partial net_{k}=o_{k}(1-o_{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Delta W_{kj}=-\eta\partial E_{d}/\partial w_{kj}=\eta(t_{k}-o_{k})o_{k}(1-o_{k})x_{kj}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unidad oculta j:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\partial E_{d}/\partial net_{j}=\sum_{k\in DS(j)}\partial E_{d}\partial net_{k}\times\partial net_{k}/\partial net_{j}=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+SVM:
+\end_layout
+
+\begin_layout Standard
+Se busca un hiperplano 
+\begin_inset Formula $wx+b=0$
+\end_inset
+
+ que separe 2 clases y maximize el margen.
+ El margen a maximizar es: 
+\begin_inset Formula $\frac{2}{||w||}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es equivalente a minimizar 
+\begin_inset Formula $J(w,b)=\frac{||w||^{2}}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bajo la restriccion: 
+\begin_inset Formula $y_{t}(wx_{t}+b)\geq1\forall t$
+\end_inset
+
+(margen duro)
+\end_layout
+
+\begin_layout Standard
+Lo anterior no tiene solución si los datos no son linealmente separables.
+\end_layout
+
+\begin_layout Standard
+Se relaja la restricción: 
+\begin_inset Formula $y_{t}(wx_{t}+b)\geq1-\xi_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora queremos minimizar: 
+\begin_inset Formula $J(w,b,\xi)=\frac{||w||^{2}}{2}+C\sum\xi_{t}$
+\end_inset
+
+ 
+\begin_inset Formula $\xi_{t}\geq0\forall t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La función de decisión es 
+\begin_inset Formula $x\mapsto\sum\alpha_{t}y_{t}x_{t}+b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entonces queremos encontrar 
+\begin_inset Formula $u$
+\end_inset
+
+ tq: 
+\begin_inset Formula $J(u)=inf_{v\in U}J(v)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $u\in U=\{v\in\mathbb{R}^{n}:\phi_{i}(v)\leq0\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se usan lagrangianos: 
+\begin_inset Formula $L(v,u)=J(v)+\sum u_{i}\phi(v)$
+\end_inset
+
+ 
+\begin_inset Formula $(u\geq0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalmente se debe minimizar 
+\begin_inset Formula $\alpha\mapsto\frac{1}{2}\alpha^{T}Q\alpha-\alpha^{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $Q_{ij}=y_{i}y_{j}x_{i}x_{j}$
+\end_inset
+
+ bajo las restricciones:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0\leq\alpha_{t}\le C$
+\end_inset
+
+ y 
+\begin_inset Formula $\sum\alpha_{t}y_{t}=0$
+\end_inset
+
+, entonces se obtiene w y b con:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w=\sum\alpha_{t}y_{t}x_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{t}[1-\xi-y_{t}(wx_{t}+b)]=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La función de decisión se reescribe como:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\mapsto\sum\alpha_{t}y_{t}x_{t}x+b$
+\end_inset
+
+, puntos con 
+\begin_inset Formula $\alpha_{t}\neq0$
+\end_inset
+
+ son los vectores soporte.
+\end_layout
+
+\begin_layout Standard
+Cuando los datos no son linealmente separables, se puede usar una función
+ kernel 
+\begin_inset Formula $\psi:\mathbb{\mathbb{R}}^{d}\rightarrow\mathbb{F}$
+\end_inset
+
+ y trabajar con 
+\begin_inset Formula $\psi(x_{t})$
+\end_inset
+
+ en vez de trabajar con 
+\begin_inset Formula $x_{t}$
+\end_inset
+
+.
+ Esto puede llegar a tener un gran costo en altas dimensiones así que usamos
+ la función kernel 
+\begin_inset Formula $k(x,z)=\psi(x)\psi(z)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tipos de kernel:
+\end_layout
+
+\begin_layout Itemize
+Polinomial: 
+\begin_inset Formula $k(x,z)=(uxz+v)^{p}$
+\end_inset
+
+,
+\begin_inset Formula $u\in\mathbb{R}$
+\end_inset
+
+, 
+\begin_inset Formula $v\in\mathbb{R}$
+\end_inset
+
+, 
+\begin_inset Formula $p\in\mathbb{N_{+}^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Gausiano: 
+\begin_inset Formula $k(x,z)=exp(\frac{||x-z||^{2}}{2\sigma^{2}})$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma\in\mathbb{R_{+}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalmente la función de decisión nos queda:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\mapsto\sum\alpha_{t}y_{t}k(x_{t},x)+b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Naive bayes:
+\end_layout
+
+\begin_layout Standard
+Modelo probabilístico: Modela la distribución de la clase y retorna la probabili
+dad de que una instancia pertenezca a la misma.
+\end_layout
+
+\begin_layout Standard
+Modelo discriminativo: Modela una regla de decisión sobre a que clase pertenece
+ la instancia.
+\end_layout
+
+\begin_layout Standard
+Regla de bayes: 
+\begin_inset Formula $P(c/x)=\frac{P(c/x)P(c)}{P(x)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sabiendo la probabilidad de un punto bajo cada clase, le asigno la clase
+ con mayor probabilidad.
+ Es decir le asigno la clase MAP.
+\end_layout
+
+\begin_layout Standard
+Ventajas:
+\end_layout
+
+\begin_layout Itemize
+Cada data point incrementa o decrementa la probabilidad de que una hipótesis
+ sea correcta.
+\end_layout
+
+\begin_layout Itemize
+Se combina la probabilidad a priori de una clase junto con los datos observados
+ para calcula una probabilidad final.
+\end_layout
+
+\begin_layout Itemize
+Nuevas instancias pueden ser clasificadas combinando las predicciones de
+ múltiples hipótesis.
+\end_layout
+
+\begin_layout Itemize
+Métodos bayesianos proveen un estándar de desición óptima.
+\end_layout
+
+\begin_layout Standard
+Desventaja:
+\end_layout
+
+\begin_layout Itemize
+Requiere conocimiento a priori de varias probabilidades.
+\end_layout
+
+\begin_layout Itemize
+Costo computacional requerido para entrenar un modelo para cada clase.
+\end_layout
+
+\begin_layout Standard
+Algoritmo MAP:
+\end_layout
+
+\begin_layout Enumerate
+Para hipótesis h 
+\begin_inset Formula $\in$
+\end_inset
+
+ H, calcular la probabilidad a posteriori: 
+\begin_inset Formula $P(h|D)=\frac{P(D|h)P(h)}{P(D)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Luego 
+\begin_inset Formula $h_{MAP}=argmax_{h\in H}P(h|D)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Asumciones:
+\end_layout
+
+\begin_layout Itemize
+Los datos de entrenamiento están libres de ruido.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c\in H$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La hipótesis MAP es la que minimiza la suma de los errores cuadrados.
+ Es decir que mientras Naive Bayes encuentra la hipótesis MAP, las redes
+ neuronales la aproximan.
+\end_layout
+
+\begin_layout Standard
+Queremos calcular: 
+\end_layout
+
+\begin_layout Standard
+Naive Bayes asume que los features son independientes, por lo tanto: 
+\begin_inset Formula $P(x_{1},...,x_{n}|C)=P(x_{1}|C)...P(x_{n}|C)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Algoritmo Naive Bayes Discreto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{Learning}\mathbf{Phase:}$
+\end_inset
+
+Dado un set S de F features y L clases:
+\end_layout
+
+\begin_layout Standard
+Para cada valor de target 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(c_{i})\leftarrow$
+\end_inset
+
+ estimar 
+\begin_inset Formula $P(c_{i})$
+\end_inset
+
+ con ejemplos en S
+\end_layout
+
+\begin_layout Standard
+Para cada valor de feature 
+\begin_inset Formula $X_{jk}$
+\end_inset
+
+ del feature 
+\begin_inset Formula $X_{j}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(x_{j}=x_{jk}|c_{i})\leftarrow$
+\end_inset
+
+ estimar 
+\begin_inset Formula $P(x_{jk}|c_{i})$
+\end_inset
+
+con ejemplos en S
+\end_layout
+
+\begin_layout Standard
+Salida: 
+\begin_inset Formula $F*L$
+\end_inset
+
+ modelos generativos probabilisticos condicionales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{Test}\mathbb{\mathbf{Phase:}}$
+\end_inset
+
+ Dada una instancia desconocida 
+\begin_inset Formula $x'=(a_{1}...a_{f})$
+\end_inset
+
+, asignar 
+\begin_inset Formula $c^{*}$
+\end_inset
+
+a 
+\begin_inset Formula $x'$
+\end_inset
+
+ si 
+\begin_inset Formula $c^{*}$
+\end_inset
+
+ es la clase map.
+\end_layout
+
+\begin_layout Standard
+¿Qué pasa si para algún feature la prob.
+ es 0?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(a_{jk}|c_{i})=0\implies P(x'|c)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Agregamos un estimador m:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(a_{jk}|c_{i})=\frac{n_{c}+mp}{n+m}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Algoritmo Naive Bayes Continuo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{Learning}\mathbf{Phase:}$
+\end_inset
+
+ Estimar probs.
+ a priori, medias y varianzas para cada clase y feature.
+\end_layout
+
+\begin_layout Standard
+Output: 
+\begin_inset Formula $F*L$
+\end_inset
+
+ distribuciones normales
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbf{TestPhase:}$
+\end_inset
+
+Dada un instancia 
+\begin_inset Formula $X'=(a_{1}...a_{F})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Calcular probabilidad condicional con las distribuciones normales que se
+ obtuvieron en learning phase.
+\end_layout
+
+\begin_layout Standard
+Aplicar regla MAP
+\end_layout
+
+\begin_layout Standard
+Otra solución: Discretizar las variables usando histogramas.
+\end_layout
+
+\begin_layout Standard
+Problema numérico: La cadena de productos de números pequeños pierde precisión.
+\end_layout
+
+\begin_layout Standard
+Utilizar logaritmos es mejor pues es una función monótona creciente.
+ Transforma el producto en suma la cual 
+\end_layout
+
+\begin_layout Standard
+es mucho más estable.
+\end_layout
+
+\begin_layout Subsection*
+K nearest neighbours:
+\end_layout
+
+\begin_layout Standard
+Aprendizaje basado en instancias: Aproximación local a la función de target
+ que aplica en la vecindad de la instancia solicitada.
+\end_layout
+
+\begin_layout Standard
+Desventaja: 
+\end_layout
+
+\begin_layout Itemize
+Costo de clasificación muy alto.
+\end_layout
+
+\begin_layout Itemize
+Sensible al ruido en los features
+\end_layout
+
+\begin_layout Standard
+Ventaja:
+\end_layout
+
+\begin_layout Itemize
+Robusto al ruido en targets
+\end_layout
+
+\begin_layout Itemize
+Efectivo en grandes datasets
+\end_layout
+
+\begin_layout Standard
+Radial basis functions: Puente entre aprendizaje basado en instancias y
+ neural networks.
+ 
+\end_layout
+
+\begin_layout Standard
+KNN algoritmo:
+\end_layout
+
+\begin_layout Standard
+Dada una instancia 
+\begin_inset Formula $x=(x_{1},...,x_{n})\in\mathbf{\mathbb{R}^{n}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Calcular distancias euclídeas con respeto a todos los datos de entrenamiento:
+ 
+\begin_inset Formula $d(x_{i},x_{j})=[(x_{i}-x_{j})(x_{i}-x_{j})]^{\frac{1}{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Predicción de x: 
+\begin_inset Formula $f(x)=argmax_{v\in V}\sum_{i=1...k}\delta[v,f(x_{i})]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta[v,f(x_{i})]=1$
+\end_inset
+
+ si 
+\begin_inset Formula $v=f(x_{i})$
+\end_inset
+
+,
+\begin_inset Formula $\delta[v,f(x_{i})]=0$
+\end_inset
+
+ sino
+\end_layout
+
+\begin_layout Standard
+Para problemas de regresión: 
+\begin_inset Formula $f(x)=\frac{1}{k}\sum f(x_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bias inductivo: Si 
+\begin_inset Formula $x$
+\end_inset
+
+ pertenece a la clase 
+\begin_inset Formula $i$
+\end_inset
+
+, entonces los puntos que estén cerca de 
+\begin_inset Formula $x$
+\end_inset
+
+ también pertenecen a la clase 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Otra opción: KNN con distancias pesadas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x)=\frac{\sum w_{i}f(x_{i})}{\sum w_{i}}$
+\end_inset
+
+ 
+\begin_inset Formula $w_{i}=[d(x_{i},x)]^{-2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Posible eliminación de features irrelevantes eligiendo una métrica adecuada:
+ 
+\begin_inset Formula $d(x_{i},x_{j})=[(x_{i}-x_{j}).Z.(x_{i}-x_{j})]^{\frac{1}{2}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+La métrica anterior requiere aprender la matriz 
+\begin_inset Formula $Z$
+\end_inset
+
+ por lo que pasa de ser un método local a un método global.
+\end_layout
+
+\begin_layout Standard
+Otro método global: Regresión localmente pesada.
+\end_layout
+
+\begin_layout Standard
+Construir un aproximación explicita 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ sobre una región local alrededor de x:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{L}(x)=w_{0}+...+w_{n}x_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E(x)=\sum[f_{L}(x_{i})-f(x_{i})]^{2}$
+\end_inset
+
+ 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ nn of 
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Conviene ajustar algunos puntos con más peso que otros:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E(x)=\sum K(d(x_{i},x))[f_{L}(x_{i})-f(x_{i})]^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Radial basis functions: Enfoque relacionado a la regresión de distancia
+ pesada y neural networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{RBF}(x)=w_{0}+\sum W_{\mu}K(d(x_{\mu},x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $K[d(x_{\mu},x)]=exp[-d(x_{\mu},x)^{2}/2\sigma_{\mu}^{2}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entrenamiento RBF:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1^{st}:$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Determinación de k (número de funciones base)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{\mu}$
+\end_inset
+
+ y 
+\begin_inset Formula $\delta_{\mu}$
+\end_inset
+
+ (parámetros de kernel)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $2^{nd}$
+\end_inset
+
+: Determinación de pesos 
+\begin_inset Formula $w_{\mu}$
+\end_inset
+
+ (problema lineal )
+\end_layout
+
+\end_body
+\end_document

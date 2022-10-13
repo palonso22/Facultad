@@ -1,0 +1,1490 @@
+Coupled
+    {
+    Type = Root
+    Name = robot4
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Coupled
+            {
+            Type = Coordinator
+            Name = Coupled0
+            Ports = 2; 4
+            Description = Coupled DEVS model
+            Graphic
+                {
+                Position = -4905; -1635
+                Dimension = 675; 720
+                Direction = Right
+                Color = 15
+                Icon = %basicelements%coupled.svg
+                Window = 5000; 5000; 5000; 5000
+                }
+            Parameters
+                {
+                }
+            System
+                {
+                Inport
+                    {
+                    Name = Inport0
+                    CoupledPort = 1
+                    Description = 
+                    Graphic
+                        {
+                        Position = -12780 ; 5325
+                        Dimension = 525
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = Inport1
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -12900 ; 6600
+                        Dimension = 600
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport0
+                    CoupledPort = 1
+                    Description = 
+                    Graphic
+                        {
+                        Position = 210 ; 2175
+                        Dimension = 630
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport1
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -585 ; 6000
+                        Dimension = 570
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport2
+                    CoupledPort = 3
+                    Description = 
+                    Graphic
+                        {
+                        Position = -675 ; 4875
+                        Dimension = 450
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = Outport3
+                    CoupledPort = 4
+                    Description = 
+                    Graphic
+                        {
+                        Position = 435 ; 6750
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Atomic
+                    {
+                    Name = X(t)0
+                    Ports = 1 ; 1
+                    Path = discrete/qoperator_sci.h
+                    Description = Discrete delay
+                    Graphic
+                        {
+                        Position = -3585 ; 840
+                        Dimension = 585 ; 570
+                        Direction = Right
+                        Color = 15
+                        Icon = %discrete%qoperator.svg
+                        }
+                    Parameters
+                        {
+                        x0 = Str; 0 ; Initial state (Scilab expression)
+                        Ts = Str; h ; Sampling Period (Scilab expression)
+                        }
+                    }
+                Atomic
+                    {
+                    Name = y(t)0
+                    Ports = 1 ; 1
+                    Path = discrete/qoperator_sci.h
+                    Description = Discrete delay
+                    Graphic
+                        {
+                        Position = -3105 ; 2145
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %discrete%qoperator.svg
+                        }
+                    Parameters
+                        {
+                        x0 = Str; 0 ; Initial state (Scilab expression)
+                        Ts = Str; h ; Sampling Period (Scilab expression)
+                        }
+                    }
+                Atomic
+                    {
+                    Name = v(t)0
+                    Ports = 1 ; 1
+                    Path = discrete/qoperator_sci.h
+                    Description = Discrete delay
+                    Graphic
+                        {
+                        Position = -3255 ; 5145
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %discrete%qoperator.svg
+                        }
+                    Parameters
+                        {
+                        x0 = Str; 0 ; Initial state (Scilab expression)
+                        Ts = Str; h ; Sampling Period (Scilab expression)
+                        }
+                    }
+                Atomic
+                    {
+                    Name = theta0
+                    Ports = 1 ; 1
+                    Path = discrete/qoperator_sci.h
+                    Description = Discrete delay
+                    Graphic
+                        {
+                        Position = -3330 ; 3690
+                        Dimension = 510 ; 585
+                        Direction = Right
+                        Color = 15
+                        Icon = %discrete%qoperator.svg
+                        }
+                    Parameters
+                        {
+                        x0 = Str; 0 ; Initial state (Scilab expression)
+                        Ts = Str; h ; Sampling Period (Scilab expression)
+                        }
+                    }
+                Atomic
+                    {
+                    Name = psi0
+                    Ports = 1 ; 1
+                    Path = discrete/qoperator_sci.h
+                    Description = Discrete delay
+                    Graphic
+                        {
+                        Position = -3480 ; 6420
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %discrete%qoperator.svg
+                        }
+                    Parameters
+                        {
+                        x0 = Str; 0 ; Initial state (Scilab expression)
+                        Ts = Str; h ; Sampling Period (Scilab expression)
+                        }
+                    }
+                Atomic
+                    {
+                    Name = X(t+h)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_wsum.h
+                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -5595 ; 915
+                        Dimension = 840 ; 435
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%sum.svg
+                        }
+                    Parameters
+                        {
+                        K[0] = Str; 1 ; 
+                        K[1] = Str; h ; 
+                        K[2] = Str; 0 ; 
+                        K[3] = Str; 0 ; 
+                        K[4] = Str; 0 ; 
+                        K[5] = Str; 0 ; 
+                        K[6] = Str; 0 ; 
+                        K[7] = Str; 0 ; 
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = cos(theta)*cos(psi)*v(t)0
+                    Ports = 3 ; 1
+                    Path = qss/qss_nlfunction.h
+                    Description = Nonlinear function. (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -8580 ; 870
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%nl_function.svg
+                        }
+                    Parameters
+                        {
+                        Expression = Str; cos(u0)*cos(u1)*u2 ; Expression in terms of u0,u1,....,u9
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = sin(theta)*cos(psi)*v(t)0
+                    Ports = 3 ; 1
+                    Path = qss/qss_nlfunction.h
+                    Description = Nonlinear function. (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -6405 ; 2295
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%nl_function.svg
+                        }
+                    Parameters
+                        {
+                        Expression = Str; sin(u0)*cos(u1)*u2 ; Expression in terms of u0,u1,....,u9
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = y(t+h)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_wsum.h
+                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -4605 ; 2115
+                        Dimension = 675 ; 720
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%sum.svg
+                        }
+                    Parameters
+                        {
+                        K[0] = Str; 1 ; 
+                        K[1] = Str; h ; 
+                        K[2] = Str; 0 ; 
+                        K[3] = Str; 0 ; 
+                        K[4] = Str; 0 ; 
+                        K[5] = Str; 0 ; 
+                        K[6] = Str; 0 ; 
+                        K[7] = Str; 0 ; 
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = sin(psi)*v(t)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_nlfunction.h
+                    Description = Nonlinear function. (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -6030 ; 3795
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%nl_function.svg
+                        }
+                    Parameters
+                        {
+                        Expression = Str; sin(u0)*u1 ; Expression in terms of u0,u1,....,u9
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = theta(t+h)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_wsum.h
+                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -4530 ; 3615
+                        Dimension = 675 ; 720
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%sum.svg
+                        }
+                    Parameters
+                        {
+                        K[0] = Str; 1 ; 
+                        K[1] = Str; h/L ; 
+                        K[2] = Str; 0 ; 
+                        K[3] = Str; 0 ; 
+                        K[4] = Str; 0 ; 
+                        K[5] = Str; 0 ; 
+                        K[6] = Str; 0 ; 
+                        K[7] = Str; 0 ; 
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = v(t+h)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_wsum.h
+                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -4380 ; 5115
+                        Dimension = 675 ; 720
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%sum.svg
+                        }
+                    Parameters
+                        {
+                        K[0] = Str; h ; 
+                        K[1] = Str; 1 ; 
+                        K[2] = Str; 0 ; 
+                        K[3] = Str; 0 ; 
+                        K[4] = Str; 0 ; 
+                        K[5] = Str; 0 ; 
+                        K[6] = Str; 0 ; 
+                        K[7] = Str; 0 ; 
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = psi(t+h)0
+                    Ports = 2 ; 1
+                    Path = qss/qss_wsum.h
+                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                    Graphic
+                        {
+                        Position = -5205 ; 6390
+                        Dimension = 675 ; 720
+                        Direction = Right
+                        Color = 15
+                        Icon = %continuous%sum.svg
+                        }
+                    Parameters
+                        {
+                        K[0] = Str; h ; 
+                        K[1] = Str; 1 ; 
+                        K[2] = Str; 0 ; 
+                        K[3] = Str; 0 ; 
+                        K[4] = Str; 0 ; 
+                        K[5] = Str; 0 ; 
+                        K[6] = Str; 0 ; 
+                        K[7] = Str; 0 ; 
+                        Inputs = Str; %Inputs ; 
+                        }
+                    }
+                Atomic
+                    {
+                    Name = To Disk0
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = -1305 ; 195
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; x.csv ; file name
+                        }
+                    }
+                Atomic
+                    {
+                    Name = To Disk1
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = 495 ; 3270
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; y.csv ; file name
+                        }
+                    }
+                Atomic
+                    {
+                    Name = To Disk2
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = 1245 ; 4770
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; v.csv ; file name
+                        }
+                    }
+                Atomic
+                    {
+                    Name = To Disk3
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = -330 ; 3645
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; theta.csv ; file name
+                        }
+                    }
+                Atomic
+                    {
+                    Name = To Disk4
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = -105 ; 7770
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; psi.csv ; file name
+                        }
+                    }
+                Point
+                    {
+                    ConectedLines = 6 ; 12 ; 24
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -8175 ; 4575
+                    }
+                Point
+                    {
+                    ConectedLines = 4 ; 16 ; 19
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -6975 ; 6150
+                    }
+                Point
+                    {
+                    ConectedLines = 7 ; 15 ; 22
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -4875 ; 6150
+                    }
+                Point
+                    {
+                    ConectedLines = 8 ; 15 ; 16
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -6450 ; 6150
+                    }
+                Point
+                    {
+                    ConectedLines = 9 ; 34 ; 38
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1875 ; 2175
+                    }
+                Point
+                    {
+                    ConectedLines = 3 ; 22 ; 45
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -2325 ; 5850
+                    }
+                Point
+                    {
+                    ConectedLines = 24 ; 41 ; 47
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -2250 ; 4725
+                    }
+                Point
+                    {
+                    ConectedLines = 27 ; 30 ; 49
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1875 ; 6750
+                    }
+                Point
+                    {
+                    ConectedLines = 18 ; 28 ; 33
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -2475 ; 525
+                    }
+                Point
+                    {
+                    ConectedLines = 26 ; 30 ; 32
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -5325 ; 7575
+                    }
+                Point
+                    {
+                    ConectedLines = 29 ; 32 ; 36
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -6675 ; 7575
+                    }
+                Point
+                    {
+                    ConectedLines = 31 ; 35 ; 36
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -7500 ; 7575
+                    }
+                Point
+                    {
+                    ConectedLines = 20 ; 37 ; 38
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1200 ; 2175
+                    }
+                Point
+                    {
+                    ConectedLines = 11 ; 40 ; 41
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -2250 ; 3975
+                    }
+                Point
+                    {
+                    ConectedLines = 21 ; 44 ; 45
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1800 ; 6000
+                    }
+                Point
+                    {
+                    ConectedLines = 23 ; 46 ; 47
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1575 ; 4875
+                    }
+                Point
+                    {
+                    ConectedLines = 25 ; 48 ; 49
+                    ConectedExtrems = Org ; Org ; Org
+                    Position = -1350 ; 6750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  6 ;  1 ; 0
+                    Sink = Cmp ;  1 ;  1 ; -1
+                    PointX = -4650 ; -4650 ; -3765
+                    PointY = 1125 ; 1125 ; 1125
+                    }
+                Line
+                    {
+                    Source = Cmp ;  12 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  1 ; -1
+                    PointX = -3600 ; -3600 ; -3390
+                    PointY = 5475 ; 5475 ; 5475
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Pnt ;  6 ; -1 ; 0
+                    PointX = -2475 ; -2325 ; -2325
+                    PointY = 5475 ; 5475 ; 5850
+                    }
+                Line
+                    {
+                    Source = Cmp ;  8 ;  3 ; -1
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = -6540 ; -6975 ; -6975
+                    PointY = 2850 ; 2850 ; 6150
+                    }
+                Line
+                    {
+                    Source = Cmp ;  11 ;  1 ; 0
+                    Sink = Cmp ;  4 ;  1 ; -1
+                    PointX = -3750 ; -3750 ; -3465
+                    PointY = 3975 ; 3975 ; 3975
+                    }
+                Line
+                    {
+                    Source = Pnt ;  1 ; -1 ; 0
+                    Sink = Cmp ;  7 ;  1 ; -1
+                    PointX = -8175 ; -9975 ; -9975 ; -8715
+                    PointY = 4575 ; 4575 ; 1050 ; 1050
+                    }
+                Line
+                    {
+                    Source = Cmp ;  12 ;  2 ; -1
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = -4545 ; -4875 ; -4875
+                    PointY = 5685 ; 5685 ; 6150
+                    }
+                Line
+                    {
+                    Source = Cmp ;  10 ;  2 ; -1
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = -6165 ; -6450 ; -6450
+                    PointY = 4275 ; 4275 ; 6150
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Pnt ;  5 ; -1 ; 0
+                    PointX = -2325 ; -1875 ; -1875
+                    PointY = 2475 ; 2475 ; 2175
+                    }
+                Line
+                    {
+                    Source = Cmp ;  9 ;  1 ; 0
+                    Sink = Cmp ;  2 ;  1 ; -1
+                    PointX = -3825 ; -3825 ; -3240
+                    PointY = 2475 ; 2475 ; 2475
+                    }
+                Line
+                    {
+                    Source = Cmp ;  4 ;  1 ; 0
+                    Sink = Pnt ;  14 ; -1 ; 0
+                    PointX = -2700 ; -2700 ; -2250
+                    PointY = 3975 ; 3975 ; 3975
+                    }
+                Line
+                    {
+                    Source = Cmp ;  8 ;  1 ; -1
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = -6540 ; -8175 ; -8175
+                    PointY = 2475 ; 2475 ; 4575
+                    }
+                Line
+                    {
+                    Source = Cmp ;  13 ;  1 ; 0
+                    Sink = Cmp ;  5 ;  1 ; -1
+                    PointX = -4425 ; -4425 ; -3615
+                    PointY = 6750 ; 6750 ; 6750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  8 ;  1 ; 0
+                    Sink = Cmp ;  9 ;  2 ; -1
+                    PointX = -5625 ; -5625 ; -4740
+                    PointY = 2625 ; 2625 ; 2625
+                    }
+                Line
+                    {
+                    Source = Pnt ;  3 ; -1 ; 0
+                    Sink = Pnt ;  4 ; -1 ; 0
+                    PointX = -4875 ; -6450 ; -6450
+                    PointY = 6150 ; 6150 ; 6150
+                    }
+                Line
+                    {
+                    Source = Pnt ;  4 ; -1 ; 0
+                    Sink = Pnt ;  2 ; -1 ; 0
+                    PointX = -6450 ; -6975 ; -6975
+                    PointY = 6150 ; 6150 ; 6150
+                    }
+                Line
+                    {
+                    Source = Cmp ;  10 ;  1 ; 0
+                    Sink = Cmp ;  11 ;  2 ; -1
+                    PointX = -5250 ; -5250 ; -4665
+                    PointY = 4125 ; 4125 ; 4125
+                    }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  1 ; 0
+                    Sink = Pnt ;  9 ; -1 ; 0
+                    PointX = -2850 ; -2475 ; -2475
+                    PointY = 1125 ; 1125 ; 525
+                    }
+                Line
+                    {
+                    Source = Pnt ;  2 ; -1 ; 0
+                    Sink = Cmp ;  7 ;  3 ; -1
+                    PointX = -6975 ; -8715 ; -8715
+                    PointY = 6150 ; 6150 ; 1425
+                    }
+                Line
+                    {
+                    Source = Prt ;  3 ; 0 ; -1
+                    Sink = Pnt ;  13 ; -1 ; 0
+                    PointX = 60 ; 60 ; -1200
+                    PointY = 2175 ; 2175 ; 2175
+                    }
+                Line
+                    {
+                    Source = Prt ;  4 ; 0 ; -1
+                    Sink = Pnt ;  15 ; -1 ; 0
+                    PointX = -765 ; -765 ; -1800
+                    PointY = 6000 ; 6000 ; 6000
+                    }
+                Line
+                    {
+                    Source = Pnt ;  6 ; -1 ; 0
+                    Sink = Pnt ;  3 ; -1 ; 0
+                    PointX = -2325 ; -2325 ; -4875
+                    PointY = 5850 ; 6150 ; 6150
+                    }
+                Line
+                    {
+                    Source = Prt ;  5 ; 0 ; -1
+                    Sink = Pnt ;  16 ; -1 ; 0
+                    PointX = -840 ; -840 ; -1575
+                    PointY = 4875 ; 4875 ; 4875
+                    }
+                Line
+                    {
+                    Source = Pnt ;  7 ; -1 ; 0
+                    Sink = Pnt ;  1 ; -1 ; 0
+                    PointX = -2250 ; -2250 ; -8175 ; -8175
+                    PointY = 4725 ; 5100 ; 5100 ; 4575
+                    }
+                Line
+                    {
+                    Source = Prt ;  6 ; 0 ; -1
+                    Sink = Pnt ;  17 ; -1 ; 0
+                    PointX = 285 ; 285 ; -1350
+                    PointY = 6750 ; 6750 ; 6750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  13 ;  2 ; -1
+                    Sink = Pnt ;  10 ; -1 ; 0
+                    PointX = -5340 ; -5340 ; -5325
+                    PointY = 6900 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Pnt ;  8 ; -1 ; 0
+                    Sink = Cmp ;  5 ;  1 ; 0
+                    PointX = -1875 ; -1875 ; -2700
+                    PointY = 6750 ; 6750 ; 6750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  14 ;  1 ; -1
+                    Sink = Pnt ;  9 ; -1 ; 0
+                    PointX = -1440 ; -2475 ; -2475
+                    PointY = 525 ; 525 ; 525
+                    }
+                Line
+                    {
+                    Source = Cmp ;  10 ;  1 ; -1
+                    Sink = Pnt ;  11 ; -1 ; 0
+                    PointX = -6165 ; -6750 ; -6750 ; -6675
+                    PointY = 3975 ; 3975 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Pnt ;  10 ; -1 ; 0
+                    Sink = Pnt ;  8 ; -1 ; 0
+                    PointX = -5325 ; -5340 ; -5325 ; -1875 ; -1875
+                    PointY = 7575 ; 7575 ; 7575 ; 7575 ; 6750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  8 ;  2 ; -1
+                    Sink = Pnt ;  12 ; -1 ; 0
+                    PointX = -6540 ; -7650 ; -7650 ; -7500
+                    PointY = 2625 ; 2625 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Pnt ;  11 ; -1 ; 0
+                    Sink = Pnt ;  10 ; -1 ; 0
+                    PointX = -6675 ; -5325 ; -5325
+                    PointY = 7575 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Pnt ;  9 ; -1 ; 0
+                    Sink = Cmp ;  6 ;  1 ; -1
+                    PointX = -2475 ; -2475 ; -2475 ; -5790 ; -5790
+                    PointY = 525 ; 525 ; 75 ; 75 ; 1050
+                    }
+                Line
+                    {
+                    Source = Pnt ;  5 ; -1 ; 0
+                    Sink = Cmp ;  9 ;  1 ; -1
+                    PointX = -1875 ; -1875 ; -1875 ; -4740 ; -4740
+                    PointY = 2175 ; 2175 ; 1800 ; 1800 ; 2325
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  2 ; -1
+                    Sink = Pnt ;  12 ; -1 ; 0
+                    PointX = -8715 ; -9450 ; -9450 ; -7500
+                    PointY = 1200 ; 1200 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Pnt ;  12 ; -1 ; 0
+                    Sink = Pnt ;  11 ; -1 ; 0
+                    PointX = -7500 ; -6675 ; -6675
+                    PointY = 7575 ; 7575 ; 7575
+                    }
+                Line
+                    {
+                    Source = Cmp ;  15 ;  1 ; -1
+                    Sink = Pnt ;  13 ; -1 ; 0
+                    PointX = 360 ; -1200 ; -1200
+                    PointY = 3600 ; 3600 ; 2175
+                    }
+                Line
+                    {
+                    Source = Pnt ;  13 ; -1 ; 0
+                    Sink = Pnt ;  5 ; -1 ; 0
+                    PointX = -1200 ; -1875 ; -1875
+                    PointY = 2175 ; 2175 ; 2175
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  1 ; 0
+                    Sink = Cmp ;  6 ;  2 ; -1
+                    PointX = -7800 ; -7800 ; -5790
+                    PointY = 1200 ; 1200 ; 1200
+                    }
+                Line
+                    {
+                    Source = Cmp ;  11 ;  1 ; -1
+                    Sink = Pnt ;  14 ; -1 ; 0
+                    PointX = -4665 ; -4950 ; -4950 ; -2250 ; -2250
+                    PointY = 3825 ; 3825 ; 3375 ; 3375 ; 3975
+                    }
+                Line
+                    {
+                    Source = Pnt ;  14 ; -1 ; 0
+                    Sink = Pnt ;  7 ; -1 ; 0
+                    PointX = -2250 ; -2250 ; -2250 ; -2250
+                    PointY = 3975 ; 3975 ; 3975 ; 4725
+                    }
+                Line
+                    {
+                    Source = Prt ;  1 ;  1 ; 0
+                    Sink = Cmp ;  12 ;  1 ; -1
+                    PointX = -12150 ; -12150 ; -4515
+                    PointY = 5325 ; 5325 ; 5325
+                    }
+                Line
+                    {
+                    Source = Prt ;  2 ;  1 ; 0
+                    Sink = Cmp ;  13 ;  1 ; -1
+                    PointX = -12150 ; -12150 ; -5340
+                    PointY = 6600 ; 6600 ; 6600
+                    }
+                Line
+                    {
+                    Source = Cmp ;  16 ;  1 ; -1
+                    Sink = Pnt ;  15 ; -1 ; 0
+                    PointX = 1110 ; -1800 ; -1800
+                    PointY = 5100 ; 5100 ; 6000
+                    }
+                Line
+                    {
+                    Source = Pnt ;  15 ; -1 ; 0
+                    Sink = Pnt ;  6 ; -1 ; 0
+                    PointX = -1800 ; -2325 ; -2325
+                    PointY = 6000 ; 6000 ; 5850
+                    }
+                Line
+                    {
+                    Source = Cmp ;  17 ;  1 ; -1
+                    Sink = Pnt ;  16 ; -1 ; 0
+                    PointX = -465 ; -1575 ; -1575
+                    PointY = 3975 ; 3975 ; 4875
+                    }
+                Line
+                    {
+                    Source = Pnt ;  16 ; -1 ; 0
+                    Sink = Pnt ;  7 ; -1 ; 0
+                    PointX = -1575 ; -2250 ; -2250
+                    PointY = 4875 ; 4875 ; 4725
+                    }
+                Line
+                    {
+                    Source = Cmp ;  18 ;  1 ; -1
+                    Sink = Pnt ;  17 ; -1 ; 0
+                    PointX = -240 ; -1350 ; -1350
+                    PointY = 8100 ; 8100 ; 6750
+                    }
+                Line
+                    {
+                    Source = Pnt ;  17 ; -1 ; 0
+                    Sink = Pnt ;  8 ; -1 ; 0
+                    PointX = -1350 ; -1875 ; -1875
+                    PointY = 6750 ; 6750 ; 6750
+                    }
+                }
+            }
+                Coupled
+                    {
+                    Type = Coordinator
+                    Name = a(t)
+                    Ports = 1; 1
+                    Description = Coupled DEVS model
+                    Graphic
+                        {
+                        Position = -9195; -1635
+                        Dimension = 690; 420
+                        Direction = Right
+                        Color = 15
+                        Icon = %basicelements%coupled.svg
+                        Window = 5000; 5000; 5000; 5000
+                        }
+                    Parameters
+                        {
+                        }
+                    System
+                        {
+                        Outport
+                            {
+                            Name = Outport0
+                            CoupledPort = 1
+                            Description = 
+                            Graphic
+                                {
+                                Position = -690 ; 0
+                                Dimension = 480
+                                Direction = Right
+                                }
+                            }
+                        Inport
+                            {
+                            Name = Inport1
+                            CoupledPort = 1
+                            Description = 
+                            Graphic
+                                {
+                                Position = -9315 ; 150
+                                Dimension = 480
+                                Direction = Right
+                                }
+                            }
+                        Atomic
+                            {
+                            Name = Kv
+                            Ports = 1 ; 1
+                            Path = qss/qss_gain.h
+                            Description = Scalar gain: y = K * u (QSS1 to 4)
+                            Graphic
+                                {
+                                Position = -2955 ; -330
+                                Dimension = 675 ; 675
+                                Direction = Right
+                                Color = 15
+                                Icon = %continuous%constant.svg
+                                }
+                            Parameters
+                                {
+                                K = Str; Kv ; Gain (Scilab)
+                                }
+                            }
+                        Atomic
+                            {
+                            Name = WSum0
+                            Ports = 2 ; 1
+                            Path = qss/qss_wsum.h
+                            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                            Graphic
+                                {
+                                Position = -5685 ; -345
+                                Dimension = 570 ; 690
+                                Direction = Right
+                                Color = 15
+                                Icon = %continuous%sum.svg
+                                }
+                            Parameters
+                                {
+                                K[0] = Str; 1 ; 
+                                K[1] = Str; -1 ; 
+                                K[2] = Str; 0 ; 
+                                K[3] = Str; 0 ; 
+                                K[4] = Str; 0 ; 
+                                K[5] = Str; 0 ; 
+                                K[6] = Str; 0 ; 
+                                K[7] = Str; 0 ; 
+                                Inputs = Str; %Inputs ; 
+                                }
+                            }
+                        Atomic
+                            {
+                            Name = Vref
+                            Ports = 0 ; 1
+                            Path = sources/constant_sci.h
+                            Description = Constant
+                            Graphic
+                                {
+                                Position = -9330 ; -1380
+                                Dimension = 675 ; 675
+                                Direction = Right
+                                Color = 15
+                                Icon = %sources%constant.svg
+                                }
+                            Parameters
+                                {
+                                K = Str; Vref ; Constant output value (Scilab expression)
+                                }
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  2 ;  1 ; 0
+                            Sink = Cmp ;  1 ;  1 ; -1
+                            PointX = -4950 ; -4950 ; -3090
+                            PointY = 0 ; 0 ; 0
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  1 ;  1 ; 0
+                            Sink = Prt ;  1 ;  1 ; -1
+                            PointX = -2175 ; -2175 ; -840
+                            PointY = 0 ; 0 ; 0
+                            }
+                        Line
+                            {
+                            Source = Prt ;  2 ;  1 ; 0
+                            Sink = Cmp ;  2 ;  2 ; -1
+                            PointX = -8700 ; -8700 ; -5865
+                            PointY = 150 ; 150 ; 150
+                            }
+                        Line
+                            {
+                            Source = Cmp ;  3 ;  1 ; 0
+                            Sink = Cmp ;  2 ;  1 ; -1
+                            PointX = -8550 ; -5865 ; -5865
+                            PointY = -1050 ; -1050 ; -150
+                            }
+                        }
+                    }
+                        Coupled
+                            {
+                            Type = Coordinator
+                            Name = psi_ref
+                            Ports = 2; 1
+                            Description = Coupled DEVS model
+                            Graphic
+                                {
+                                Position = -2355; -1710
+                                Dimension = 675; 720
+                                Direction = Right
+                                Color = 15
+                                Icon = %basicelements%coupled.svg
+                                Window = 5000; 5000; 5000; 5000
+                                }
+                            Parameters
+                                {
+                                }
+                            System
+                                {
+                                Inport
+                                    {
+                                    Name = Inport0
+                                    CoupledPort = 1
+                                    Description = 
+                                    Graphic
+                                        {
+                                        Position = -11220 ; -1275
+                                        Dimension = 540
+                                        Direction = Right
+                                        }
+                                    }
+                                Inport
+                                    {
+                                    Name = Inport1
+                                    CoupledPort = 2
+                                    Description = 
+                                    Graphic
+                                        {
+                                        Position = -11040 ; 2325
+                                        Dimension = 480
+                                        Direction = Right
+                                        }
+                                    }
+                                Outport
+                                    {
+                                    Name = Outport0
+                                    CoupledPort = 1
+                                    Description = 
+                                    Graphic
+                                        {
+                                        Position = 660 ; -1275
+                                        Dimension = 630
+                                        Direction = Right
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = WSum0
+                                    Ports = 2 ; 1
+                                    Path = qss/qss_wsum.h
+                                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                                    Graphic
+                                        {
+                                        Position = -8055 ; -1785
+                                        Dimension = 675 ; 720
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %continuous%sum.svg
+                                        }
+                                    Parameters
+                                        {
+                                        K[0] = Str; 1 ; 
+                                        K[1] = Str; -1 ; 
+                                        K[2] = Str; 0 ; 
+                                        K[3] = Str; 0 ; 
+                                        K[4] = Str; 0 ; 
+                                        K[5] = Str; 0 ; 
+                                        K[6] = Str; 0 ; 
+                                        K[7] = Str; 0 ; 
+                                        Inputs = Str; %Inputs ; 
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = arctan
+                                    Ports = 1 ; 1
+                                    Path = qss/qss_nlfunction.h
+                                    Description = Nonlinear function. (QSS1 to 4)
+                                    Graphic
+                                        {
+                                        Position = -6030 ; -1785
+                                        Dimension = 675 ; 720
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %continuous%nl_function.svg
+                                        }
+                                    Parameters
+                                        {
+                                        Expression = Str; atan(u0) ; Expression in terms of u0,u1,....,u9
+                                        Inputs = Str; %Inputs ; 
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = WSum1
+                                    Ports = 2 ; 1
+                                    Path = qss/qss_wsum.h
+                                    Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                                    Graphic
+                                        {
+                                        Position = -3405 ; -1635
+                                        Dimension = 675 ; 720
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %continuous%sum.svg
+                                        }
+                                    Parameters
+                                        {
+                                        K[0] = Str; 1/L0 ; 
+                                        K[1] = Str; -1 ; 
+                                        K[2] = Str; 0 ; 
+                                        K[3] = Str; 0 ; 
+                                        K[4] = Str; 0 ; 
+                                        K[5] = Str; 0 ; 
+                                        K[6] = Str; 0 ; 
+                                        K[7] = Str; 0 ; 
+                                        Inputs = Str; %Inputs ; 
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = Ky
+                                    Ports = 1 ; 1
+                                    Path = qss/qss_gain.h
+                                    Description = Scalar gain: y = K * u (QSS1 to 4)
+                                    Graphic
+                                        {
+                                        Position = -1455 ; -1605
+                                        Dimension = 675 ; 675
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %continuous%constant.svg
+                                        }
+                                    Parameters
+                                        {
+                                        K = Str; Ky ; Gain (Scilab)
+                                        }
+                                    }
+                                Atomic
+                                    {
+                                    Name = Yref0
+                                    Ports = 0 ; 1
+                                    Path = sources/constant_sci.h
+                                    Description = Constant
+                                    Graphic
+                                        {
+                                        Position = -11280 ; -2655
+                                        Dimension = 675 ; 675
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %sources%constant.svg
+                                        }
+                                    Parameters
+                                        {
+                                        K = Str; Yref ; Constant output value (Scilab expression)
+                                        }
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  1 ;  1 ; 0
+                                    Sink = Cmp ;  2 ;  1 ; -1
+                                    PointX = -7275 ; -7275 ; -6165
+                                    PointY = -1425 ; -1425 ; -1425
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  2 ;  1 ; 0
+                                    Sink = Cmp ;  3 ;  1 ; -1
+                                    PointX = -5250 ; -5250 ; -3540
+                                    PointY = -1425 ; -1425 ; -1425
+                                    }
+                                Line
+                                    {
+                                    Source = Prt ;  2 ;  1 ; 0
+                                    Sink = Cmp ;  3 ;  2 ; -1
+                                    PointX = -10425 ; -3540 ; -3540
+                                    PointY = 2325 ; 2325 ; -1125
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  4 ;  1 ; 0
+                                    Sink = Prt ;  3 ;  1 ; -1
+                                    PointX = -675 ; -675 ; 510
+                                    PointY = -1275 ; -1275 ; -1275
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  3 ;  1 ; 0
+                                    Sink = Cmp ;  4 ;  1 ; -1
+                                    PointX = -2625 ; -2625 ; -1590
+                                    PointY = -1275 ; -1275 ; -1275
+                                    }
+                                Line
+                                    {
+                                    Source = Prt ;  1 ;  1 ; 0
+                                    Sink = Cmp ;  1 ;  2 ; -1
+                                    PointX = -10575 ; -10575 ; -8190
+                                    PointY = -1275 ; -1275 ; -1275
+                                    }
+                                Line
+                                    {
+                                    Source = Cmp ;  5 ;  1 ; 0
+                                    Sink = Cmp ;  1 ;  1 ; -1
+                                    PointX = -10500 ; -8190 ; -8190
+                                    PointY = -2325 ; -2325 ; -1575
+                                    }
+                                }
+                            }
+                                Coupled
+                                    {
+                                    Type = Coordinator
+                                    Name = omega
+                                    Ports = 2; 1
+                                    Description = Coupled DEVS model
+                                    Graphic
+                                        {
+                                        Position = -6705; 840
+                                        Dimension = 675; 720
+                                        Direction = Right
+                                        Color = 15
+                                        Icon = %basicelements%coupled.svg
+                                        Window = 5000; 5000; 5000; 5000
+                                        }
+                                    Parameters
+                                        {
+                                        }
+                                    System
+                                        {
+                                        Inport
+                                            {
+                                            Name = Inport0
+                                            CoupledPort = 1
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -15015 ; -3450
+                                                Dimension = 645
+                                                Direction = Right
+                                                }
+                                            }
+                                        Inport
+                                            {
+                                            Name = Inport1
+                                            CoupledPort = 2
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -14865 ; -2325
+                                                Dimension = 480
+                                                Direction = Right
+                                                }
+                                            }
+                                        Outport
+                                            {
+                                            Name = Outport0
+                                            CoupledPort = 1
+                                            Description = 
+                                            Graphic
+                                                {
+                                                Position = -4590 ; -2475
+                                                Dimension = 480
+                                                Direction = Right
+                                                }
+                                            }
+                                        Atomic
+                                            {
+                                            Name = WSum0
+                                            Ports = 2 ; 1
+                                            Path = qss/qss_wsum.h
+                                            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+                                            Graphic
+                                                {
+                                                Position = -10530 ; -2835
+                                                Dimension = 675 ; 720
+                                                Direction = Right
+                                                Color = 15
+                                                Icon = %continuous%sum.svg
+                                                }
+                                            Parameters
+                                                {
+                                                K[0] = Str; 1 ; 
+                                                K[1] = Str; -1 ; 
+                                                K[2] = Str; 0 ; 
+                                                K[3] = Str; 0 ; 
+                                                K[4] = Str; 0 ; 
+                                                K[5] = Str; 0 ; 
+                                                K[6] = Str; 0 ; 
+                                                K[7] = Str; 0 ; 
+                                                Inputs = Str; %Inputs ; 
+                                                }
+                                            }
+                                        Atomic
+                                            {
+                                            Name = Kpsi
+                                            Ports = 1 ; 1
+                                            Path = qss/qss_gain.h
+                                            Description = Scalar gain: y = K * u (QSS1 to 4)
+                                            Graphic
+                                                {
+                                                Position = -7605 ; -2805
+                                                Dimension = 675 ; 675
+                                                Direction = Right
+                                                Color = 15
+                                                Icon = %continuous%constant.svg
+                                                }
+                                            Parameters
+                                                {
+                                                K = Str; Kpsi ; Gain (Scilab)
+                                                }
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  1 ; 0
+                                            Sink = Cmp ;  2 ;  1 ; -1
+                                            PointX = -9750 ; -9750 ; -7740
+                                            PointY = -2475 ; -2475 ; -2475
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  2 ;  1 ; 0
+                                            Sink = Prt ;  3 ;  1 ; -1
+                                            PointX = -6825 ; -6825 ; -4740
+                                            PointY = -2475 ; -2475 ; -2475
+                                            }
+                                        Line
+                                            {
+                                            Source = Prt ;  2 ;  1 ; 0
+                                            Sink = Cmp ;  1 ;  2 ; -1
+                                            PointX = -14250 ; -14250 ; -10665
+                                            PointY = -2325 ; -2325 ; -2325
+                                            }
+                                        Line
+                                            {
+                                            Source = Prt ;  1 ;  1 ; 0
+                                            Sink = Cmp ;  1 ;  1 ; -1
+                                            PointX = -14250 ; -10665 ; -10665
+                                            PointY = -3450 ; -3450 ; -2625
+                                            }
+                                        }
+                                    }
+                                        Line
+                                            {
+                                            Source = Cmp ;  3 ;  1 ; 0
+                                            Sink = Cmp ;  4 ;  1 ; -1
+                                            PointX = -1575 ; -1575 ; -6840 ; -6840
+                                            PointY = -1350 ; 225 ; 225 ; 1050
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  1 ; 0
+                                            Sink = Cmp ;  3 ;  1 ; -1
+                                            PointX = -4125 ; -2490 ; -2490
+                                            PointY = -1500 ; -1500 ; -1500
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  3 ; 0
+                                            Sink = Cmp ;  3 ;  2 ; -1
+                                            PointX = -4125 ; -2490 ; -2490
+                                            PointY = -1200 ; -1200 ; -1200
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  2 ; 0
+                                            Sink = Cmp ;  2 ;  1 ; -1
+                                            PointX = -4125 ; -4125 ; -9390 ; -9390
+                                            PointY = -1350 ; -2025 ; -2025 ; -1425
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  4 ; 0
+                                            Sink = Cmp ;  4 ;  2 ; -1
+                                            PointX = -4125 ; -4125 ; -6840 ; -6840
+                                            PointY = -1050 ; 2625 ; 2625 ; 1350
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  2 ; -1
+                                            Sink = Cmp ;  4 ;  1 ; 0
+                                            PointX = -5040 ; -5625 ; -5625 ; -5925
+                                            PointY = -1125 ; -1125 ; 1200 ; 1200
+                                            }
+                                        Line
+                                            {
+                                            Source = Cmp ;  1 ;  1 ; -1
+                                            Sink = Cmp ;  2 ;  1 ; 0
+                                            PointX = -5040 ; -5040 ; -8400
+                                            PointY = -1425 ; -1425 ; -1425
+                                            }
+        }
+    }

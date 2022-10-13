@@ -1,0 +1,277 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Trabajo Práctico 4:}
+\end_layout
+
+\end_inset
+
+ Descartes
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Pablo Alonso
+\end_layout
+
+\begin_layout Subsection*
+1)
+\end_layout
+
+\begin_layout Standard
+A continuación repasamos los 4 preceptos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{1º Precepto:}
+\end_layout
+
+\end_inset
+
+ no recibir jamás por verdadera cosa alguna que por medio de la evidencia
+ no la pudiera establecer como tal; es decir, evitar cuidadosamente la precipita
+ción y la prevención y no incluir en mis juicios nada más que lo que se
+ presentase tan clara y distintamente a mi espíritu, y no hubiese ninguna
+ ocasión para ponerlo en duda.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{2º Precepto:}
+\end_layout
+
+\end_inset
+
+ dividir cada una de las dificultades, que examinaré, en cuantas partes
+ sea posible y en las que sean requeridas para su mejor resolución.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{3º Precepto:}
+\end_layout
+
+\end_inset
+
+ conducir ordenadamente mis pensamientos, empezando por los objetos más
+ simples y más fáciles de conocer, para ir ascendiendo poco a poco, procediendo
+ por grados, hasta el conocimiento de los más complejos, e incluso suponiendo
+ un orden entre aquellos que no se preceden naturalmente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{4º Precepto:}
+\end_layout
+
+\end_inset
+
+ hacer en todo unos recuentos o recensiones tan completas y unas revisiones
+ tan generales, que llegase a estar seguro de no haber omitido nada.
+\end_layout
+
+\begin_layout Standard
+Vamos a aplicar los 4 preceptos al problema de manejar un auto.
+\end_layout
+
+\begin_layout Standard
+El 1º precepto lo vamos a aplicar a la hora de disponernos a manejar un
+ auto.
+ Si no disponemos de la suficiente experiencia previa, claramente no vamos
+ a percibir el concepto de como manejar un auto de forma clara y distinta
+ porque no somos capaces de conceptualizar en nuestra mente de que forma
+ realizar esta tarea.
+ Para adquirir el conocimiento necesario de forma tal de poder manejar el
+ auto, necesitamos entender en que partes se divide el sistema de control
+ del auto y como controlarlas.
+ En este punto estaríamos aplicando el 2º concepto: dividir un problema
+ grande en unidades que sean más fáciles de resolver y cuya unión me permita
+ resolver el problema mayor de como manejar el auto: como encender el auto,
+ como funciona el sistema de cambios de velocidad, como interpretar los
+ relojes en el tablero del auto, saber utilizar los espejos, saber para
+ que funcional cada pedal, como funciona el freno de mano...
+ Volvemos a aplicar los 4 preceptos a aquellas subtareas si el 1º precepto
+ no se cumple, en caso contrario aceptamos como conocimiento claro y distinto
+ el como llevar a cabo dicha tarea.
+ El 3º precepto lo aplicamos al componer todos las tareas anteriores, ordenandol
+as y formando un único procedimiento que nos permite controlar el auto:
+ chequear que la palanca de cambio esté en punto muerto,encender el auto,
+ chequear por los espejos que podemos movernos, quitar el freno de mano,
+ apretar el embrague, pasar a la primer velocidad, etc..
+ El 4º precepto lo aplicamos al revisar el procedimiento y asegurarnos que
+ no omitimos ningún paso o que nos falta entender alguno.
+\end_layout
+
+\begin_layout Subsection*
+2)
+\end_layout
+
+\begin_layout Standard
+Considero que el método no es eficaz en situaciones dónde no se pueda hacer
+ un planteo lógico que permita subvidir un problema o establecer una solución
+ a partir de la evidencia.
+ Por ejemplo escribir un libro o poesía, interpretar una obra de teatro,
+ bailar o capturar una buena fotografía.
+ Este tipo de situaciones se resuelven usando la creatividad o la experiencia
+ como herramientas.
+ 
+\end_layout
+
+\begin_layout Standard
+Un método para resolver situaciones que dependen de nuestra creatividad
+ y/o experiencia es el siguiente:
+\end_layout
+
+\begin_layout Standard
+1) Estimular nuestra mente de forma de inspirarnos y generar ideas creativas.
+\end_layout
+
+\begin_layout Standard
+2) Componer esas ideas creativas.
+\end_layout
+
+\begin_layout Standard
+3) Plasmar dichas ideas a trávez de algún método que las haga visible al
+ exterior.
+\end_layout
+
+\begin_layout Standard
+4) Corroborar que hemos representado nuestras ideas creativas tal cual se
+ nos han ocurrido.
+\end_layout
+
+\begin_layout Subsection*
+3)
+\end_layout
+
+\begin_layout Standard
+Lo que más me gustó fue leer el Discurso del Método porque me pareció interesant
+e como Descartes puso en duda todo lo que le habían enseñado y además cómo
+ se propuso a crear el mísmo un método para descartar que afirmaciones eran
+ correctas y cuáles no.
+ El apunte fue de gran ayuda para guiarme sobre la lectura del mismo.
+ 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,178 @@
+Coupled
+    {
+    Type = Root
+    Name = ej3
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = cola
+            Ports = 2 ; 1
+            Path = generador/cola.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -11505 ; 270
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = procesador
+            Ports = 1 ; 1
+            Path = generador/procesador2.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -9105 ; 1065
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = generador0
+            Ports = 0 ; 1
+            Path = generador/aleatorio.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -13995 ; 1335
+                Dimension = 705 ; 495
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                JMIN = Val; 0 ; Tiempo m�nimo
+                JMAX = Val; 0.5 ; Tiempo m�ximo
+                TMAX = Val; 5 ; Valor m�ximo
+                }
+            }
+        Atomic
+            {
+            Name = To Disk0
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -11280 ; 3420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; generador.csv ; file name
+                }
+            }
+        Atomic
+            {
+            Name = To Disk1
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -8805 ; 3570
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; cola.csv ; file name
+                }
+            }
+        Point
+            {
+            ConectedLines = 1 ; 4 ; 5
+            ConectedExtrems = Org ; Org ; Org
+            Position = -12675 ; 1575
+            }
+        Point
+            {
+            ConectedLines = 2 ; 6 ; 7
+            ConectedExtrems = Org ; Org ; Org
+            Position = -9600 ; 1425
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -13200 ; -13200 ; -12675
+            PointY = 1575 ; 1575 ; 1575
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; 0
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -10725 ; -10125 ; -10125 ; -9600
+            PointY = 600 ; 600 ; 1425 ; 1425
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  1 ;  2 ; -1
+            PointX = -8325 ; -8025 ; -8025 ; -12075 ; -12075 ; -11640
+            PointY = 1425 ; 1425 ; 2475 ; 2475 ; 750 ; 750
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; -1
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -11415 ; -12675 ; -12675
+            PointY = 3750 ; 3750 ; 1575
+            }
+        Line
+            {
+            Source = Pnt ;  1 ; -1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -12675 ; -12525 ; -12525 ; -11640
+            PointY = 1575 ; 1575 ; 450 ; 450
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -8940 ; -9600 ; -9600
+            PointY = 3900 ; 3900 ; 1425
+            }
+        Line
+            {
+            Source = Pnt ;  2 ; -1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -9600 ; -9240 ; -9240
+            PointY = 1425 ; 1425 ; 1425
+            }
+        }
+    }

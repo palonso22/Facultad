@@ -1,0 +1,1112 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica Final: Máquinas de vectores soporte}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Pablo Alonso
+\end_layout
+
+\begin_layout Subsubsection*
+1)
+\end_layout
+
+\begin_layout Standard
+La implementación usada de svm fue libsvm, y se descargó de esta dirección:
+ https://github.com/cjlin1/libsvm.
+\end_layout
+
+\begin_layout Standard
+A continuación se describen los pasos seguidos para evaluar en 10 10 folds
+ el dataset heladas:
+\end_layout
+
+\begin_layout Enumerate
+Se dividió el dataset en las 2 clases.
+\end_layout
+
+\begin_layout Enumerate
+Se dividió cada clase en 10 subconjuntos lo más uniformes posibles en tamaño.
+\end_layout
+
+\begin_layout Enumerate
+Para crear el fold i, unimos el subconjunto i de la clase 0 con el subconjunto
+ i de la clase 1.
+\end_layout
+
+\begin_layout Standard
+Para cada fold i:
+\end_layout
+
+\begin_layout Enumerate
+El fold i se lo llama test
+\end_layout
+
+\begin_layout Enumerate
+Reunimos el resto de los datos para entrenamiento en un conjunto train.
+\end_layout
+
+\begin_layout Enumerate
+Se extrae aleatoriamente un 20% de los datos del conjunto train y lo llamamos
+ validación y el 80% restante lo llamamos train2.
+\end_layout
+
+\begin_layout Enumerate
+Se optimiza las constantes necesarias entrenando sobre train2 y evaluando
+ con validación.
+\end_layout
+
+\begin_layout Enumerate
+Se recupera el conjunto inicial train haciendo la unión entre train2 y validació
+n.
+\end_layout
+
+\begin_layout Enumerate
+Se entrena un modelo usando las constantes optimizadas obtenidas sobre train.
+\end_layout
+
+\begin_layout Enumerate
+Se evalua test.
+\end_layout
+
+\begin_layout Standard
+Se usa la siguiente tabla para mostrar los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Método
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Errores obtenidos en cada fold
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Lineal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31.38,15.69,19.61,29.42,12.00,22.00,18.37,10.21,24.49,24.49
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Polinómico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23.53,15.69,15.69,23.53,12.00,26.00,18.37,14.29,20.41,22.45
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Gaussiano
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31.38,19.61,21.57,23.53,14,26,18.37,12.25,24.49,24.49
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Árboles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29.4,21.6,15.7,19.6,16.0,32.0,26.5,18.4,28.6,24.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Bayes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31.37,17.64,19.60,29.41,12,22,20.4,14,26.53,20.40 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La siguiente tabla resume las medias y desviaciones estándar en las mediciones
+ hechas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Método
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Promedio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Desv.
+ Est.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Lineal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.97
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Polinómico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.67
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM - Kernel Gaussiano
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Árboles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.81
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Bayes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SVM con kernel polinómico logra los mejores resultados debido a que logra
+ un promedio menor de error y tiene además una baja desv.
+ estándar con respecto al resto de los métodos.
+ SVM con kernel lineal obtiene los mejores resultados después de este.
+ En general, a menos que se sepa que los datos son linealmente separables,
+ usar SVM con kernel polinómico es una mejor idea que usar un kernel lineal
+ puesto que el espacio de soluciones de un kernel lineal está contenido
+ por el espacio de soluciones del kernel polinómico y este es capaz de mejorar
+ esas soluciones buscando otros hiperplanos en espacios de más dimensiones.
+ Obviamente si sabemos que los datos son linealmente separables, SVM con
+ kernel lineal va a ser mejor que cualquier método puesto que este encuentra
+ el hiperplano óptimo que separa las clases.
+ El peor método observado resultan ser los árboles de decisión, los cuales
+ crean soluciones agrupando los datos en hipercubos.
+\end_layout
+
+\begin_layout Subsubsection*
+2) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Hipótesis nula:}$
+\end_inset
+
+ SVM - Polinómico y Árboles de decisión son modelos con igual performance.
+\end_layout
+
+\begin_layout Standard
+Calculamos la media de las diferencias entre los resultados de ambos métodos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bar{d}=4.034$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Calculamos la desviación estándar de las diferencias entre los resultados
+ de ambos métodos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bar{S_{d}}=3.77$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Calculamos t:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t=(4.034)/(3.77/sqrt(10))\thickapprox3.38$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dado que 
+\begin_inset Formula $t>2.26$
+\end_inset
+
+, se puede rechazar la hipotésis nula de que los 2 algoritmos tienen igual
+ performance con 95% de confidencia y como se vio que la esperanza del error
+ de SVM - KL tiende a ser menor tiene mejor performance para este problema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Hipótesis nula:}$
+\end_inset
+
+ SVM- KL y SVM - Polinómico son modelos con igual performance
+\end_layout
+
+\begin_layout Standard
+Calculamos 
+\begin_inset Formula $\bar{d},\bar{S_{d}}$
+\end_inset
+
+ y 
+\begin_inset Formula $t$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bar{d}=1.57$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bar{S_{d}}=3.95$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t=(1.57)/(3.95/sqrt(10))\thickapprox1.25$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dado que 
+\begin_inset Formula $t<2.26$
+\end_inset
+
+, no se puede rechazar con 95% de confidencia la hipótesis nula.
+ Es decir, para dicho intervalo de confidencia, el test no es lo suficientemente
+ fuerte para probar que ambos modelos tienen distinta performance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+3)
+\end_layout
+
+\begin_layout Standard
+Se eligió como dataset spambase (se puede encontrar en https://archive.ics.uci.edu/
+ml/datasets.php/spambase) el cual se confeccionó en 1998.
+ La idea era crear un filtrador de spam y este dataset fue uno de los más
+ mencionados tanto en papers como en blogs o foros de discusión de machine
+ learning dando la idea de que la calidad de los datos es buena, además
+ la cantidad de datos que posee (4601 mails, 40% de spam) se asemeja a la
+ cantidad de datos que se manejó durante el curso de la materia, los features
+ miden porcentajes por lo que son números reales entre 0 y 100.
+ Además miden cosas interesantes como la frecuencia de palabras más comunes,
+ frecuencia de carácteres y frecuencia de letras capitales.
+ Posiblemente para un filtrador de spam actual sea necesario considerar
+ otros features como por ejemplo en que horario se mandó el correo,
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para obtener un valor representativo sobre el error de los modelos utilizados
+ se usó la técnica 10-folds.
+ Luego se toma el promedio de todos los resultados obtenidos como valor
+ representativo, como se hizo en el ejercicio 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para las redes neuronales se usó la siguiente configuración:
+\end_layout
+
+\begin_layout Itemize
+10 nodos en la capa intermedia
+\end_layout
+
+\begin_layout Itemize
+Learning rate: 0.001
+\end_layout
+
+\begin_layout Itemize
+Momentun: 0.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para los modelos que necesitan validación se usó el 20% del conjunto de
+ datos de entrenamiento en cada iteración de 10-fold.
+\end_layout
+
+\begin_layout Standard
+A continuación, una tabla con los errores de cada modelo en cada iteración
+ del fold:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modelo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Errores
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM con kernel lineal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18.87,19.08,14.31,20.43,16.52,15.21,18.47,16.73,20.04,15.68
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Redes Neuronales
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+76.35,75.05,84.38,75.65,80.21,75, 85,83.91,83.44,78.21
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Bayes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.09,18.66,21.48,18.92,22.61,19.14,21.09,21.74,39.44,18.31
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Árboles de decisión
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.1,7.2,6.3,7.8,7.2,8.3,8.7,5.7,6.3,5.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+K nearest neighbours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18.65,19.30,17.35,19.34,16.52,20.86,19.56,17.60,20.91,16.77 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La siguiente tabla muestra el error promedio y la desviación estándar en
+ los errores:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modelo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Error promedio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Desviación estándar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SVM con kernel lineal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.53
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Redes Neuronales
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20.28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Naive Bayes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22.04
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.29
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Árboles de decisión
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.95
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.05
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+K nearest neighbours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18.68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.58
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Claramente el modelo que mejor resuelve este problema son los árboles de
+ decisión, tanto por su error promedio como por la baja desviación estándar
+ en los errores medidos.
+\end_layout
+
+\begin_layout Standard
+Por los resultados observados, SVM resuelve con más precisión el problema
+ de si un mail es spam o no que RD,NB y KNN salvo C4.5.
+ En términos de bias inductivo, se puede encontrar un hiperplano que separa
+ los datos y que permite clasificar de forma más eficaz que el resto de
+ los modelos y una forma de precisar aún más esta clasificación es la división
+ en hipercubos llevada a cabo por C4.5.
+\end_layout
+
+\end_body
+\end_document

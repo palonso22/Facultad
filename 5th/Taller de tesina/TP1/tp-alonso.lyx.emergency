@@ -1,0 +1,746 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{chronosys}
+\usepackage{xcolor}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Ejercicio a:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Época
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Duración estimada
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{orange}{Antigua Grecia}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1200 a.C.
+ - 146 a.C.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{blue}{Imperio Romano}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ 27 a.C - 476
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{magenta}{Cristianismo }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+33 - actualidad
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{brown}{Edad Media}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+476 - 1453
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{green}{Renacimiento}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ 1300 - 1600
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{gray}{Edad Moderna}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1453 - 1789
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{pink}{Iluminismo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1715-1789
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{red}{Guerras Mundiales}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1914 - 1945
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textcolor{violet}{Guerra Fría}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1945 - 1991
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}Linea cronológica 1500 a.C.
+ - 1700 d.C.
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startchronology [startyear=-1500,stopdate=false,stopyear=1700, color=yellow,arro
+w= fals,dateselevation=2.5pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=orange]{-1200}{-146}{Antigua Grecia}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoevent{33}{Nace el Cristianismo}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=brown]{476}{1453}{Edad Media}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=gray]{1453}{1700}{Edad Moderna}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+stopchronology
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+startchronology [startyear=-1500,stopyear=1700, color=yellow,arrow= false]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=blue]{-27}{476}{Imperio Romano}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=green]{1300}{1600}{Renacimiento}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+stopchronology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}Linea cronológica 1700 d.C.
+ - 2020 d.C.
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+startchronology [startyear=1700,stopyear=2020, color=yellow,arrow= false,startda
+te=false]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=gray]{1700}{1789}{Edad Moderna}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=violet,colorbox=white]{1945}{1991}{}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=red,colorbox=white]{1914}{1945}{Guerras Mundiales Guerra
+ Fría}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+stopchronology
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+startchronology [startyear=1700,stopyear=2020,color=yellow,arrow= false,startdat
+e=false]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+chronoperiode [color=pink]{1715}{1789}{Iluminismo}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+stopchronology
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Ejercicio b:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\backslash
+textbf{La guerra fría y el mundo bipolar}
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La guerra fría fue el sistema de relaciones internacionales que se sostuvo
+ desde 1945 hasta 1991 entre las dos superpotencias, Estados Unidos y la
+ URSS, y la división del mundo en dos bloques: el capitalista y el comunista.
+ 
+\end_layout
+
+\begin_layout Standard
+Estados Unidos y la URSS almacenaron armamento suficiente para amenazarse
+ entre si.
+ Los conflictos se resolvieron en diversos puntos de la Tierra evitando
+ una guerra directa entre las dos potencias.
+ Ambos gobiernos difundieron un conjunto de valores que ensalzaba su propio
+ sistema y rechazaba frontalmente el contrario.
+ El control social y político provocó en ambos bloques la represión de las
+ opiniones críticas.
+\end_layout
+
+\begin_layout Standard
+El período de máxima tensión se vivió entre 1947 y 1953 cuando se establecieron
+ ambos bloques y las dos superpotencias intentaron ampliar sus áreas de
+ influencia.
+ Hubo muchos roces y parecía inminente un enfrentamiento directo.
+ Se destacan como los hechos más conflictivos:
+\end_layout
+
+\begin_layout Itemize
+Crisis de Berlín : La URSS exigió la retirada de las fuerzas armadas occidentale
+s de Berlín Occidental.
+ Concluyó con la construcción del Muro de Berlín y la división de la ciudad
+ en Berlín Este y Berlín Occidental.
+\end_layout
+
+\begin_layout Itemize
+Crisis de Corea : Corea del Norte administrada por la URSS invadió Corea
+ del Sur administrada por Estados Unidos.
+\end_layout
+
+\begin_layout Standard
+Entre 1953 y 1977 se inició una etapa de diálogo aunque hubo algunos conflictos:
+\end_layout
+
+\begin_layout Itemize
+En 1961 se construye el Muro de Berlín.
+\end_layout
+
+\begin_layout Itemize
+En 1962 se produjo la Crisis de Misiles en Cuba y Estados Unidos intervino
+ en la Guerra de Vietnam.
+\end_layout
+
+\begin_layout Standard
+Desde 1977 la URSS desplegó misiles nucleares en sus zonas de influencia
+ en Europa y Asia.
+ Tambíen aumentó su presencia en el Tercer Mundo, en países como Etiopía,
+ Angola, Mozambique y Afganistán.
+ Estados Unidos , por otra parte, desplegó misiles en Europa occidental
+ y diseño el Proyecto de Defensa Estratégica o 
+\begin_inset Quotes eld
+\end_inset
+
+Guerra de las Galaxias
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+El derrumbe del bloque soviético y la desintegración de la URSS en 1991
+ supusieron el fin de la guerra fría.
+\end_layout
+
+\begin_layout Section*
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+
+\end_layout
+
+\end_body
+\end_document

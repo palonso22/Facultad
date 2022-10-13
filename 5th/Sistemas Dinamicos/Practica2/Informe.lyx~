@@ -1,0 +1,1599 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Práctica 2: Sistemas de eventos discretos
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Pablo Alonso
+\end_layout
+
+\begin_layout Subsubsection*
+1)
+\end_layout
+
+\begin_layout Standard
+Modelo de la fuente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=\{\},Y=\mathbb{R},S=\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta(s)=s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda(s)=ramdon(J_{min}-J_{max})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}(s)=ramdon(0,T_{max})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Observar que el valor del estado representa también su tiempo de vida, el
+ cual es calculado de forma aleatoria como un valor uniforme entre 
+\begin_inset Formula $J_{min}$
+\end_inset
+
+ y 
+\begin_inset Formula $J_{max}$
+\end_inset
+
+.
+ La salida también es calculada de dorma aleatoria como un valor entre 0
+ y 
+\begin_inset Formula $T_{max}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej1/ej1.png
+	display false
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+2) 
+\end_layout
+
+\begin_layout Standard
+En vez de que la salida sea 1, se lo modela para que saque el número del
+ trabajo actual.
+ De esta forma se puede testear si el tiempo que estuvo trabajando se correspond
+e con dicho número y si fue un número emitido por el generador.
+\end_layout
+
+\begin_layout Standard
+Modelo del procesador:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=\mathbb{R\times}\{0\},Y=\mathbb{R}\times\{0\},S=\mathbb{R\times}\mathbb{R}\times\{true,false\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta((u,\sigma,busy))=\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda((u,\sigma,busy))=(u,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((u,\sigma,true),e,(x,port))=(u,\sigma-e,true)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((u,\sigma,false),e,(x,port))=(x,x,true)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}((u,\sigma,true))=(u,\infty,false)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gráficas con los resultados obtenidos con los parámetros 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=10$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej2/ej21.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej2/ej22.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El procesador rechaza los trabajos mientras está ocupado y emite salidas
+ con los valores de los trabajos que aceptó.
+ Se observa que el tiempo hasta que se produce una salida del procesador
+ corresponde con el número del trabajo.
+\end_layout
+
+\begin_layout Subsubsection*
+3)
+\end_layout
+
+\begin_layout Standard
+Modelo de la cola:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=\mathbb{R\times}\{0\}\cup\mathbb{R}\times\{1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y=\mathbb{R\times}\{0\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S=\mathbb{R^{*}}\times\mathbb{R^{\dotplus}}\times\{true,false\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((q,\sigma,busy,p),e,(x,port))=\begin{cases}
+(q.x,0,busy) & busy\wedge port=0\\
+(q.x,0,busy) & !busy\wedge port=0\\
+(q,\sigma,busy) & colaLlena\wedge port=0\\
+(q,0,false) & q\neq\emptyset\wedge port=1\\
+(q,\infty,false) & q=\emptyset\wedge port=1
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}((x.q,0,false))=(q,\infty,false)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta((q,\sigma,busy))=\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda((x.q,\sigma,busy))=(x,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A continuación se muestran los resultados generados con 
+\begin_inset Formula $J_{min}=0,J_{max}=0.5,T_{max}=4$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/ej31.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej3/ej32.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En la fig 5 se observa en que momento la cola despacha un trabajo hacia
+ el procesador.
+ Los trabajos son despachados hacia el procesador en el orden en que se
+ generan.
+ Cada vez que la cola envía un trabajo espera una notificación de parte
+ del procesador que tarda en llegar una cantidad de tiempo aproximada al
+ valor del trabajo que envío.
+\end_layout
+
+\begin_layout Subsubsection*
+4)
+\end_layout
+
+\begin_layout Standard
+Modelo del sensor:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$X=(
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times{0})
+\backslash
+cup(
+\backslash
+mathbb{R}^{+}
+\backslash
+times{1}),Y=
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times{0},S=
+\backslash
+mathbb{Z}^{+}_{0}
+\backslash
+times
+\backslash
+mathbb{R}^{+}$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((ctos,\sigma),e,(x,port))=\begin{cases}
+(ctos+1,0) & port=0\\
+(ctos-1,0) & port=1\wedge ctos>0
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}((ctos,0))=(ctos,\infty)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda((ctos,\sigma))=(ctos,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta((ctos,\sigma))=\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resultados con 
+\begin_inset Formula $J_{min}=0,J_{max}=0.5,T_{max}=4$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/ej41.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/ej42.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como se espera el tamaño de la cola tienda a crecer en cuanto el procesador
+ demora haciendo algún trabajo.
+\end_layout
+
+\begin_layout Standard
+Resultados con 
+\begin_inset Formula $J_{min}=1,J_{max}=2,T_{max}=2$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/ej43.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej4/ej44.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como se espera, en este caso la cola tiende a estar vacia.
+\end_layout
+
+\begin_layout Subsubsection*
+5)
+\end_layout
+
+\begin_layout Standard
+Modelo del filtro:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$X=(
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times{0})
+\backslash
+cup(
+\backslash
+mathbb{R}^{+}
+\backslash
+times{1})$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Y=(
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times{0})
+\backslash
+cup(
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times{1})$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$S=
+\backslash
+mathbb{R}^{+}_{0}
+\backslash
+times
+\backslash
+{x|x
+\backslash
+geq0
+\backslash
+wedge x
+\backslash
+leq1
+\backslash
+}
+\backslash
+times
+\backslash
+mathbb{R}^{+}_{0}$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((u,p,\sigma),e,(x,port))=\begin{cases}
+(u,x,\sigma) & port=1\\
+(x,p,0) & port=0
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}((u,p,0))=(u,p,\infty)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta((u,p,\sigma))=\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda((u,p,\sigma))=\begin{cases}
+(u,0) & prandom\leq p\\
+(u,1) & prandom>p\\
+where & prandom=random(0,1)
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resultados:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/fig10.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej5/fig11.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+6)
+\end_layout
+
+\begin_layout Standard
+Modelo del muestreador:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=\mathbb{R},Y=\mathbb{\mathbb{R}},S=\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}(u,e,x)=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}(u)=u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda(u)=u$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta(u)=T$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej6/ej61.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+7)
+\end_layout
+
+\begin_layout Standard
+Modelo del controlador: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$X=
+\backslash
+mathbb{Z}^{+}_{0}$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y=\{x|0\leq x\leq1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$S=
+\backslash
+mathbb{R}
+\backslash
+times
+\backslash
+mathbb{Z}^{+}_{0}
+\backslash
+times
+\backslash
+mathbb{R}$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e(l)=l_{ref}-l$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{int}(x,l)=(x+e(l),l,1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta_{ext}((u,l,\sigma),e,(x,port))=(u,x,\sigma-e)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ta((u,l,\sigma))=\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda((x,l,\sigma))=sat(k_{1}*e(l)+k_{2}*x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parámetros: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=2,L_{ref}=50,K_{1}=0.02,K_{2}=0.001:$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej7/ej71.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej7/ej72.png
+	display false
+	width 10cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que el controlador regula el valor de p a medida que la cola
+ supera o baja el tamaño de 50 elementos.
+\end_layout
+
+\begin_layout Subsubsection*
+8)
+\end_layout
+
+\begin_layout Standard
+Parámetros: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=2,L_{ref}=10,K_{1}=0.02,K_{2}=0.001:$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej81.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej82.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $L_{ref}=100$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej83.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej84.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $L_{ref}=50$
+\end_inset
+
+ y 
+\begin_inset Formula $K_{2}=0.01$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej85.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej86.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $K_{2}=0.001,K_{1}=0.001$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej87.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej88.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $K_{2}=0.1,K_{1}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej89.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej810.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $L_{ref}=0,K_{2}=0.001,K_{1}=0.1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej811.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej8/ej812.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa que 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+ actuan como 2 parámetros de peso.
+ Cuando 
+\begin_inset Formula $K_{1}>K_{2}$
+\end_inset
+
+, la ecuación que determina p queda gobernada por el error en el momento
+ k , es decir si un instante de tiempo k el tamaño de la cola está por encima
+ o por debajo de 
+\begin_inset Formula $l_{ref}$
+\end_inset
+
+.
+ Mientras que si 
+\begin_inset Formula $K_{2}>K_{1}$
+\end_inset
+
+ , lo que se tiene más en cuenta a la hora de determinar p es si la cola
+ paso más momentos con una cantidad de elementos mayor o menor a 
+\begin_inset Formula $l_{ref}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+9)
+\end_layout
+
+\begin_layout Standard
+Parámetros del generador: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 1: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 2: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej91.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej92.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figuras 25 y 26: Los 2 sistemas trabajan con los mismos parámetros pero
+ el sistema 2 depende de que el sistema 1 tenga demasiado trabajo para que
+ le llegue algo de trabajo y eventualmente su cola puede vaciarse.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parámetros del generador: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=20$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 1: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 2: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej93.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej94.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figuras 27 y 28: Lo mismo que el caso anterior pero al ser trabajos más
+ largos los vaciados de las colas toman más tiempo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parámetros del generador: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 1: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.2,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 2: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej95.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej96.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figuras 29 y 30: Al tomar 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+ grande en el sistema 1, este no puede superar por mucho los 50 elementos
+ por lo visto en el ejercicio anterior.
+ En el segundo sistema se observa un efecto similar a los casos anteriores
+ por tener los mismos parámetros.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parámetros del generador: 
+\begin_inset Formula $J_{min}=0,J_{max}=1,T_{max}=10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 1: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.002,K_{2}=0.1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 2: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej97.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej98.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figuras 31 y 32: En este caso lo que pesa es la sumatoria de los errores,
+ por eso el sistema 2 casi no recibe trabajo hasta que el sistema 1 pasa
+ un buen tiempo acumulando trabajo en su cola y se queda sin trabajo cuando
+ el sistema 1 pasa un tiempo vaciando su cola.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parámetros del generador: 
+\begin_inset Formula $J_{min}=0,J_{max}=4,T_{max}=4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 1: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sistema 2: 
+\begin_inset Formula $L_{ref}=50,K_{1}=0.02,K_{2}=0.001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej99.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Ej9/ej910.png
+	display false
+	width 10cm
+	height 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figuras 33 y 34: En este caso el sistema 1 no acumula demasiado trabajo
+ por lo que el sistema 2 en ningún momento debe acumular trabajo en su cola.
+\end_layout
+
+\end_body
+\end_document

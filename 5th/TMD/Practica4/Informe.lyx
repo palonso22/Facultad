@@ -1,0 +1,527 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{xcolor,colortbl}
+\usepackage{booktabs}
+\usepackage{multicol}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 4: Métodos supervizados avanzados}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Pablo Alonso
+\end_layout
+
+\begin_layout Subsection*
+Ej 1)
+\end_layout
+
+\begin_layout Standard
+A continuación una gráfica con los resultados obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig1.png
+	display false
+	width 15cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En el problema 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+ se observa un menor error de ajuste con árboles de una profundidad 8, mientras
+ que en el 
+\begin_inset Formula $\textbf{Diagonal}$
+\end_inset
+
+, el menor error se encuentra con árboles de profundidad 1.
+ Es decir que 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+ requiere de un boosting con árboles más complejos que 
+\begin_inset Formula $\textbf{Diagonal}$
+\end_inset
+
+para minimizar el error.
+ Esto tiene sentido al ser 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+ un problema más complejo al estar las espirales anidadas, mientras que
+ 
+\begin_inset Formula $\textbf{Diagonal}$
+\end_inset
+
+ se trata de 2 distribuciones cuyos centros están separados.
+\end_layout
+
+\begin_layout Standard
+La gráfica da una idea entre el trade-off entre sesgo y varianza, pues para
+ el caso 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+ el error desciende hasta llegar a una profundidad 8 pero tiende a subir
+ para árboles más profundos, osea para los que tienen un mayor error de
+ varianza.
+ En conclusión, usando la misma cantidad de iteraciones de boosting para
+ el problema 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+ y 
+\begin_inset Formula $\textbf{Diagonal}$
+\end_inset
+
+, 
+\begin_inset Formula $\textbf{Diagonal}$
+\end_inset
+
+ requiere de árboles con más sesgo que 
+\begin_inset Formula $\textbf{Espiral}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Ej 2)
+\end_layout
+
+\begin_layout Standard
+Lo primero es que hay muchas variables y pocos datos.
+ Es decir que los datos como puntos en su espacio de features se alejan
+ entre si provocando que haya varianza entre las soluciones.
+ La siguiente tabla muestra los resultados obtenidos: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{blue}  Algoritmo & Error con 5 folds  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan}  SVM kernel Polynomial & 0.1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} SVM kernel Gaussiano & 0.25  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} Ada Boosting & 0.078 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} Random forest & 0.078 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los resultados anteriores son demasiados optimistas para los algoritmos
+ ensembles y para SVM con kernel polynomial teniendo en cuenta que los algoritmo
+s usados tienen parámetros libres y pueden ser muy flexibles, además del
+ problema de la dimensionalidad en los datos.
+ Al hacer un 5 fold se observa demasiada varianza en el error de test.
+ Por ejemplo para Adaboost los errores de test para 5 fold fueron 0.18, 0.11,
+ 0.1, 0, 0 y la media es 0.078.
+\end_layout
+
+\begin_layout Subsection*
+Ej 3)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{blue}  Algoritmo & Error con 5 folds  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan}  SVM kernel Polynomial & 0.09 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} SVM kernel Gaussiano & 0.08  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} Ada Boosting & 0.038 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} Random forest & 0.04 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los algoritmos ensembles presentan una mejora notable con respecto a los
+ no ensembles.
+ Es decir, para este problema se obtiene una mejor performance mediante
+ un conjunto de clasificadores con sesgo (Adaboost) o sin sesgo (Random
+ Forest) que usando clasificadores individuales sin sesgo (las smvs).
+ En parte esto es debido a que los árboles de los métodos ensembles se especiali
+zan en diferentes subconjuntos de los datos, haciendo que la respuesta devuelta
+ por el clasificador final sea más robusta puesto que es una ponderación
+ de las respuestas de varios clasificadores y esto también la hace más estable.
+ Además, las svms tienden a sobreajustar mientras que los ensembles buscan
+ el punto óptimo entre sesgo y varianza.
+\end_layout
+
+\begin_layout Standard
+En el experimento se comprueba que el error de Adaboost puede ser menor
+ que el de Random Forest debido a que Adaboost implementa mejoras teóricas
+ con respecto a Random Forest (boostraps con distintos pesos y reducción
+ de una función de costo en cada paso) .
+ Sin embargo los resultados de Random Forest son muy buenos sin haber necesitado
+ ajustar ningún parámetro (para Adaboost el parámetro a ajustar fue la complejid
+ad de los árboles).
+\end_layout
+
+\end_body
+\end_document

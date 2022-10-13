@@ -1,0 +1,2118 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{multicol}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 3 : Clustering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+Pablo Alonso
+\end_layout
+
+\begin_layout Section*
+1)
+\end_layout
+
+\begin_layout Subsubsection*
+a-
+\end_layout
+
+\begin_layout Standard
+Se intenta encontrar la especie y el género de los cangrejos :
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+* Resultados con 2-means sin aplicar transformación logarítmica:
+\end_layout
+
+\begin_layout Itemize
+Especie : Se logra clusterizar ambas especies correctamente con frecuencia
+ relativa de 0.28
+\end_layout
+
+\begin_layout Itemize
+Género : No se logra clusterizar los géneros.
+\end_layout
+
+\begin_layout Standard
+* Resultados con 2-means aplicando transformación logarítmica:
+\end_layout
+
+\begin_layout Itemize
+Especie : Se logra clusterizar ambas especies correctamente con frecuencia
+ relativa de 0.35
+\end_layout
+
+\begin_layout Itemize
+Género : No se logra clusterizar los géneros.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Observando los plots, se encuentra que claramente la especie es mucho más
+ separable como bolas apretadas que el género.
+\end_layout
+
+\begin_layout Standard
+Las únicas transformaciones de los datos que permiten que 2-means encuentre
+ la especie como clusters es hacer PCA y luego un escalado de los datos.
+ Sin embargo, se encuentra que hay una probabilidad más alta de encontrar
+ las clases si primero se hace la transformación logarítmica .
+ Cuando se aplican PCA y el escalado de los datos se giran los ejes en las
+ direcciones que maximizan la varianza y luego se centran con respecto a
+ los ejes girados (evita los problemas de distintas escalas al calcular
+ distancias).
+ La transformación logarítmica compacta los datos y y reduce el riesgo de
+ caer en un mínimo local.
+\end_layout
+
+\begin_layout Standard
+A continuación, se presenta las matrices de confusión para los métodos jerárquic
+os:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Single linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} B & 99 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} O & 100 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Género & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} F & 99 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} M & 100 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Average linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Especie& 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} B & 99 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} O & 100 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Género & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} F & 99 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} M & 100 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Complete linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} B & 97 & 3 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} O & 90 & 10 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Género & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} F & 87 & 13 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} M & 100 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los métodos jerárquicos no logran buenos resultados encontrando los clusters
+ que representen las clases.
+ Single y average linkage separan outliers del resto de los datos y complete
+ linkage encuentre conjuntos de puntos que son compactos pero que estan
+ separados entre si.
+ Ninguno de los métodos jerárquicos refleja la estructura subyacente de
+ las clases.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+b-
+\end_layout
+
+\begin_layout Standard
+No puede hacerce log de los datos en este caso porque hay valores que son
+ negativos.Para reducir el número de dimensiones se hace una PCA.
+ Se observa que se explica el 99% de la varianza tomando las primeras 5
+ componentes principales, por lo tanto se hace clustering usando solo esas
+ 5 variables.
+ 
+\end_layout
+
+\begin_layout Standard
+No se logra hacer una perfecta separación de los datos para ninguna de las
+ 2 clases con ningún método.
+ Las transformaciones que se hacen son PCA y luego un escalado de los datos.
+ Se observan mejores resultados sin escalar los datos.
+ A continuación los resultados obtenidos de los clusterings usando solo
+ las primeras 5 componentes principales :
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2-means:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Año & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2006 & 2 & 17 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2007 & 28 & 2 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2 & 10 & 12 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 10 & 9 & 18 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Single linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Año & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2006 & 18 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2007 & 29 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2 & 21 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 10 & 26 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Average linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Año & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2006 & 18 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2007 & 29 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2 & 21 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 10 & 26 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Complete linkage:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{2} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  Año & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2006 & 18 & 1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2007 & 24 & 6 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Especie & 1 & 2  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2 & 19 & 3 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 10 & 23 & 4 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De los resultados para el problema lampone se interpreta que para las transforma
+ciones hechas, la clase año es casi perfectamente separable en 2 bolas apretadas
+, pero la especie los datos resultan poco separables.
+ Debido a la presencia de outliers en el problema, los métodos jerárquicos
+ crean 2 clusters que son la separación de algunos outliers del resto de
+ los puntos.
+ Estos clusters no representan para nada las estructuras subyacentes que
+ forman las clases.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+2)
+\end_layout
+
+\begin_layout Standard
+Ver código en R.
+\end_layout
+
+\begin_layout Section*
+3)
+\end_layout
+
+\begin_layout Standard
+A continuación, gráficos con las clusterizaciones determinadas por GAP:
+\end_layout
+
+\begin_layout Standard
+-Iris devuelve como resultado 4,5 y 6:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename irisK4.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename irisK5.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename irisK6.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+- Lampone devuelve como resultado 2 y 4:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lamponeK2.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lamponeK4.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+- Para gausianas devuelve que la única solución es 4:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename gausianasK4.png
+	display false
+	width 5cm
+	height 5cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para estabilidad se usaron las técnicas de sampleo y agregar ruido.
+ A continuación los gráficos obtenidos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename iris.png
+	display false
+	width 12cm
+	height 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observa una diferencia importante entre las soluciones de los datasets
+ sampleados.
+ En los datasets con ruido se logran descartar los mayores valores de k
+ , la distribución para 3 está bastante pegada a 1 y parece ser la mejor
+ solución .
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lampone.png
+	display false
+	width 12cm
+	height 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las soluciones con sampleo difieren bastante entre sí.
+ Para esta técnica la solución más estable parece ser 4 y para los datasets
+ con ruido lo más estable parece ser 6.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename gausianas.png
+	display false
+	width 12cm
+	height 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aca también ocurre que las soluciones con sampleo difieren mucho.
+ Para esta técnica la mejor solución parece estar entre 4,5 y 6.
+ Para las soluciones con ruido el mejor k es 4.
+\end_layout
+
+\begin_layout Section*
+4)
+\end_layout
+
+\begin_layout Standard
+El dataset se saco de https://archive.ics.uci.edu/ml/datasets/wine.
+ Hay 3 viñedos y la idea es encontrar a que viñedo pertenece cada vino.
+ Para empezar se hace un análisis de los datos.
+ Dado que los valores son todos positivos se hace una transformación logarítmica
+ para acercar los outliers, luego un escalado para llevar los datos a mismas
+ escalas y PCA para eliminar el ruido.
+ A continuación se muestran los datos con sus respectivas clasificaciones
+ y el resultado de 3-means:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wine.png
+	display false
+	width 12cm
+	height 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El acierto de la clusterización con respecto a las clases es de 95.48 % y
+ la matriz de confusión es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow}  & Clusters  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} Viñedo & 1 & 2 & 3 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 1 & 58 & 0 & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 2 & 4 & 63 & 4 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{yellow} 3 & 0 & 0 & 48 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se aplica estabilidad para encontrar el k más estable:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wines.png
+	display false
+	width 12cm
+	height 15cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para sampleo, 3 tiene menor varianza mientras que 4 toma valores más cercanos
+ a 1.
+ Para ruido, los valores más estables son 2 y 3 pero nos quedamos con 3.
+\end_layout
+
+\end_body
+\end_document

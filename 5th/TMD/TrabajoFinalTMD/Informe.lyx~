@@ -1,0 +1,2268 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{xcolor,colortbl}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{float}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Trabajo Final de TMD}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{1cm}
+\end_layout
+
+\begin_layout Plain Layout
+
+Reconocimiento de actividad con smartphones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Alonso Pablo
+\end_layout
+
+\begin_layout Section*
+1.
+ Introducción
+\end_layout
+
+\begin_layout Standard
+Este dataset fue construido a partir de observar las actividades de 30 individuo
+s con edad entre 19 y 48 años realizando actividades mientras llevaban smartphon
+es (Samsung Galaxy S II) con sensores inerciales integrados (acelerómetro
+ y giroscopio).
+ Se capturaron la acelaración lineal y la velocidad angular en un radio
+ constante de 50Hz.
+ 
+\end_layout
+
+\begin_layout Standard
+Las señales de los sensores (acelerómetro y giroscopio) fueron pre-procesados
+ aplicando filtros de ruido y sampleadas en ventanas de 2.56 segundos y una
+ superposición del 50% (128 lecturas por ventana).
+ Por cada ventana, se obtiene un vector de datos aplicando operaciones como
+ media,desviación estándar,máximo y mínimo, etc.
+\end_layout
+
+\begin_layout Standard
+Las activades fueron: caminar, subir escaleras, bajar escaleras,sentarse,
+ pararse,acostarse.
+ El problema es poder indentificar que actividad estaba realizando un individuo
+ al momento de hacer la medición con los artefactos previamente descriptos.
+\end_layout
+
+\begin_layout Standard
+Cada observación del dataset contiene:
+\end_layout
+
+\begin_layout Itemize
+Aceleración triaxial (medida desde el acelerómetro) y la aceleración estimada
+ del cuerpo.
+\end_layout
+
+\begin_layout Itemize
+Velocidad angular triaxial (medida desde el giroscopio).
+\end_layout
+
+\begin_layout Itemize
+En total son 561 features con variables de dominio de tiempo y frecuencia,
+ más la etiqueta de la actividad y el ID del usuario.
+\end_layout
+
+\begin_layout Section*
+2.
+ Pre-análisis
+\end_layout
+
+\begin_layout Standard
+En total el dataset tiene 563 features .
+ No contiene campos con valores nulos o desconocidos y los features están
+ normalizados en el rango [-1,1] .
+ Para hacer el análisis se descarta el feature id de usuario porque se considera
+ que no aporta ninguna información relevante al problema.
+\end_layout
+
+\begin_layout Standard
+Balance de las clases:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{blue}   LAYING & SITTING & STANDING 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan}  18.9 & 17.3 & 18.5 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{blue} WALKING & WALKING DOWNSTAIRS & WALKING UPSTAIRS 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{cyan} 16.7 & 13.7 & 15  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+No se observa un desbalance significativo entre las clases por lo que no
+ resulta necesario aplicar técnicas de sampleo.
+\end_layout
+
+\begin_layout Section*
+2.
+ Visualización de variables
+\end_layout
+
+\begin_layout Standard
+Dado el número de features resulta imprescindible usar algún método que
+ permita reducir la dimensionalidad de los datos y analizar solo aquellas
+ variables que sean importantes.
+ Se utiliza Recursive Feature Elimination junto con Random Forest para determina
+r la importacia las variables.
+ Se usó este algoritmo porque considera la relevancia de las variables cuando
+ trabajan en conjunto.
+ Se listan las 5 variables más relevantes determinadas por el algoritmo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|l|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{red}   Ranking de variables
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} x1:=tGravityAcc-min-X 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} x2:=tGravityAcc-arCoeff-Y 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} x3:=tBodyAcc-max-X 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} x4:=fBodyGyro-meanFreq-X  
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} x5:=tGravityAcc-mean-Y 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El algoritmo dice que los features más influyentes para determinar la actividad
+ de los individuos fueron:
+\end_layout
+
+\begin_layout Itemize
+Aceleración de la gravedad (mínimo) en el eje x.
+\end_layout
+
+\begin_layout Itemize
+Aceleración de la gravedad (mínimo) en el eje y.
+\end_layout
+
+\begin_layout Itemize
+Aceleración del cuerpo (máximo) en el eje x.
+\end_layout
+
+\begin_layout Itemize
+Giro del cuerpo (frecuencia media) en el eje x.
+\end_layout
+
+\begin_layout Itemize
+Aceleración de la gravedad (coeficiente de autoregresión ) en el eje y.
+\end_layout
+
+\begin_layout Subsection*
+2.1 Análisis univariado
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig1.png
+	display false
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En 
+\begin_inset Formula $\textbf{Fig 1}$
+\end_inset
+
+ se observa la dispersión de las 5 variables más relevantes El boxplot permite
+ ver dónde se encuentran el rango intercuartílico y los outliers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig2.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 2}$
+\end_inset
+
+: Cuando el sujeto está acostado no hay movimiento y por lo tanto no hay
+ aceleración de un movimiento hacia abajo, de ahí que los valores en ese
+ caso sean nulos o menores que cuando se está realizando otra actividad.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig3.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 3}$
+\end_inset
+
+: No hay una clara separación entre clases por parte de x2, aunque hay una
+ clara diferencia en como se concentran los valores si el sujeto se está
+ desplazando.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig4.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 4}$
+\end_inset
+
+: Claramente la aceleración del cuerpo es mayor cuando el sujeto se está
+ desplazando.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig5.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 5}$
+\end_inset
+
+: No parece aportar demasiada información a la actividad del sujeto
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig6.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 6}$
+\end_inset
+
+: x5 parece tener una fuerte relacion con el hecho de si el individuo está
+ acostado.
+ En este caso, la variable toma valores mayores comparando con las otras
+ actividades.
+\end_layout
+
+\begin_layout Subsection*
+2.2 Análisis bivariado
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig7.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 7}$
+\end_inset
+
+:Como ya se vio,x1 determina si el individuo está acostado, y en algunos
+ casos si está sentado.
+ Para el resto de las clases, estas 2 variables no aportan mucha información.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig8.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 8}$
+\end_inset
+
+:Nuevamente,x1 determina si el individuo está acostado.
+ Hay una clara separación entre las clases que indican que el sujeto se
+ está desplazando y las que no.
+ En ciertas regiones hay clases predominantes sobre otras, por lo que se
+ concluye que estas 2 variables trabajan bien en conjunto y aportan mucha
+ información al problema.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig9.png
+	display false
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 9}$
+\end_inset
+
+:Hay una clara separación sobre si el sujeto se está desplazando o no.
+ Además definen de manera bastante precisa si el individuo camina o sube
+ o baja escaleras.
+ Para el resto de las clases se observa solapamiento.
+ 
+\end_layout
+
+\begin_layout Subsection*
+2.3 Análisis trivariado
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig10.png
+	display false
+	width 16cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 10}$
+\end_inset
+
+: Hay una separación muy evidente entre LAYING y el resto de las clases,
+ como ya se había visto en figuras anteriores debido a x1.
+ Ahora también hay una buena separación entre SITTING y STANDING con respecto
+ a las clases en las que hay desplazamiento gracias a la variable x3 (aceleració
+n del cuerpo).
+ Hay un poco de solapamiento entre SITTING y STANDING si x3 es cercano a
+ -1 (menor aceleración), pero el solapamiento disminuye a medida que x3
+ es mayor a -1 (mayor aceleración).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig11.png
+	display false
+	width 16cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 11}$
+\end_inset
+
+: En este caso la variable x4 (giro del cuerpo) parece determinar mejor
+ que en el caso anterior si el sujeto se está sentando o se está parando.
+ Comparado con 
+\begin_inset Formula $\textbf{Fig 10}$
+\end_inset
+
+, hay más solapamiento entre las clases que indican desplazamiento del sujeto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig12.png
+	display false
+	width 16cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 12}$
+\end_inset
+
+: Nuevamente hay una clara separación entre las clases que indican desplazamient
+o y las que no.
+ Ahora hay mucho solapamiento entre las clases STANDING,SITTING y LAYING.
+ Estas 3 variables distinguen muy bien que tipo de desplazamiento se está
+ produciendo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename fig13.png
+	display false
+	width 16cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\textbf{Fig 13}$
+\end_inset
+
+: En este caso la única separación clara es entre LAYING y el resto de las
+ clases, sin embargo para el resto de las clases hay mucho solapamiento.
+\end_layout
+
+\begin_layout Section*
+3.
+ Clustering
+\end_layout
+
+\begin_layout Subsection*
+3.1 Agrupamiento con k-means
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{
+\backslash
+label{tab:}Kmeans con k = 6 y 280 dimensiones} 
+\backslash
+centering 
+\backslash
+begin{tabular}[t]{>{}l|>{}r|>{}r|>{}r|>{}r|>{}r|>{}r} 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF6619}{ } & 
+\backslash
+cellcolor[HTML]{FF6619}{3} & 
+\backslash
+cellcolor[HTML]{FF6619}{6} & 
+\backslash
+cellcolor[HTML]{FF6619}{5} & 
+\backslash
+cellcolor[HTML]{FF6619}{4} & 
+\backslash
+cellcolor[HTML]{FF6619}{1} & 
+\backslash
+cellcolor[HTML]{FF6619}{2}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{LAYING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1917} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{4} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{23}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{SITTING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{50} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1139} & 
+\backslash
+cellcolor[HTML]{FFFF19}{579} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{9}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{STANDING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{946} & 
+\backslash
+cellcolor[HTML]{FFFF19}{958} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{2}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1390} & 
+\backslash
+cellcolor[HTML]{FFFF19}{239} & 
+\backslash
+cellcolor[HTML]{FFFF19}{93}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_DOWNSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{250} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1009} & 
+\backslash
+cellcolor[HTML]{FFFF19}{147}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_UPSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{41} & 
+\backslash
+cellcolor[HTML]{FFFF19}{123} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1380}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una solución de haber ejecutado k-means con k = 6 se muestra en Tabla 1,
+ se observa que el algoritmo pone un centro en la clase LAYING, 2 centros
+ compartidos por las clases SITTING y STANDING y el resto de los centros
+ uno en el centro de cada clase restante.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{
+\backslash
+label{tab:}Kmeans con k = 6 y 50 dimensiones} 
+\backslash
+centering 
+\backslash
+begin{tabular}[t]{>{}l|>{}r|>{}r|>{}r|>{}r|>{}r|>{}r} 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF6619}{ } & 
+\backslash
+cellcolor[HTML]{FF6619}{6} & 
+\backslash
+cellcolor[HTML]{FF6619}{1} & 
+\backslash
+cellcolor[HTML]{FF6619}{4} & 
+\backslash
+cellcolor[HTML]{FF6619}{2} & 
+\backslash
+cellcolor[HTML]{FF6619}{3} & 
+\backslash
+cellcolor[HTML]{FF6619}{5}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{LAYING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1940} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{3} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{SITTING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{17} & 
+\backslash
+cellcolor[HTML]{FFFF19}{570} & 
+\backslash
+cellcolor[HTML]{FFFF19}{626} & 
+\backslash
+cellcolor[HTML]{FFFF19}{564} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{STANDING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{4} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1105} & 
+\backslash
+cellcolor[HTML]{FFFF19}{789} & 
+\backslash
+cellcolor[HTML]{FFFF19}{3} & 
+\backslash
+cellcolor[HTML]{FFFF19}{5}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{65} & 
+\backslash
+cellcolor[HTML]{FFFF19}{14} & 
+\backslash
+cellcolor[HTML]{FFFF19}{869} & 
+\backslash
+cellcolor[HTML]{FFFF19}{774}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_DOWNSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{880} & 
+\backslash
+cellcolor[HTML]{FFFF19}{526}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_UPSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{56} & 
+\backslash
+cellcolor[HTML]{FFFF19}{607} & 
+\backslash
+cellcolor[HTML]{FFFF19}{881}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tabla 2 muestra una solución de 6 means luego de haber bajado la dimensionalidad
+, se observa más solapamiento entre las clases al haber reducino el número
+ de dimensiones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{
+\backslash
+label{tab:}HClust con 280 dimensiones} 
+\backslash
+centering 
+\backslash
+begin{tabular}[t]{>{}l|>{}r|>{}r|>{}r|>{}r|>{}r|>{}r} 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF6619}{ } & 
+\backslash
+cellcolor[HTML]{FF6619}{3} & 
+\backslash
+cellcolor[HTML]{FF6619}{5} & 
+\backslash
+cellcolor[HTML]{FF6619}{1} & 
+\backslash
+cellcolor[HTML]{FF6619}{2} & 
+\backslash
+cellcolor[HTML]{FF6619}{4} & 
+\backslash
+cellcolor[HTML]{FF6619}{6}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{LAYING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{50} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1893} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{SITTING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1777} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{STANDING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1906} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1721} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_DOWNSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{2} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1381} & 
+\backslash
+cellcolor[HTML]{FFFF19}{23} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_UPSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1544} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{
+\backslash
+label{tab:}HClust con 50 dimensiones} 
+\backslash
+centering 
+\backslash
+begin{tabular}[t]{>{}l|>{}r|>{}r|>{}r|>{}r|>{}r|>{}r} 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF6619}{ } & 
+\backslash
+cellcolor[HTML]{FF6619}{2} & 
+\backslash
+cellcolor[HTML]{FF6619}{3} & 
+\backslash
+cellcolor[HTML]{FF6619}{1} & 
+\backslash
+cellcolor[HTML]{FF6619}{4} & 
+\backslash
+cellcolor[HTML]{FF6619}{5} & 
+\backslash
+cellcolor[HTML]{FF6619}{6}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{LAYING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1808} & 
+\backslash
+cellcolor[HTML]{FFFF19}{85} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{51} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{SITTING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{58} & 
+\backslash
+cellcolor[HTML]{FFFF19}{4} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1711} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1} & 
+\backslash
+cellcolor[HTML]{FFFF19}{3}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{STANDING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1906} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1722} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_DOWNSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1406} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_UPSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1544} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{
+\backslash
+label{tab:}Hclust con 280 dimensiones} 
+\backslash
+centering 
+\backslash
+begin{tabular}[t]{>{}l|>{}r|>{}r|>{}r|>{}r|>{}r|>{}r} 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF6619}{ } & 
+\backslash
+cellcolor[HTML]{FF6619}{3} & 
+\backslash
+cellcolor[HTML]{FF6619}{6} & 
+\backslash
+cellcolor[HTML]{FF6619}{1} & 
+\backslash
+cellcolor[HTML]{FF6619}{2} & 
+\backslash
+cellcolor[HTML]{FF6619}{4} & 
+\backslash
+cellcolor[HTML]{FF6619}{5}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{LAYING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{39} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1905} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{SITTING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{2} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1774} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{STANDING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1906} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1706} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1} & 
+\backslash
+cellcolor[HTML]{FFFF19}{15}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_DOWNSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{2} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1333} & 
+\backslash
+cellcolor[HTML]{FFFF19}{33} & 
+\backslash
+cellcolor[HTML]{FFFF19}{38}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+cellcolor[HTML]{FF8000}{WALKING
+\backslash
+_UPSTAIRS} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{1490} & 
+\backslash
+cellcolor[HTML]{FFFF19}{0} & 
+\backslash
+cellcolor[HTML]{FFFF19}{54}
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+3.2 Estabilidad de los clusters
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename estabilidad.png
+	display false
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Usando sampleo y ruido para modificar el dataset original, con el algoritmo
+ de estabilidad se determina que el número óptimo de clusters es 5.
+ 
+\end_layout
+
+\begin_layout Section*
+4.
+ Clasificación
+\end_layout
+
+\begin_layout Standard
+Se usarán 2 métodos distintos : random forest y SVM con kernel polinómico.
+ Para entrenar los modelos se usan un subconjunto de n variables tomadas
+ del ranking obtenido de la sección 2.
+ Luego se podrá comparar la cantidad de variables que realmente aportan
+ información para la clasificación.
+ Las medidas de error se obtienen promediando los resultados obtenidos con
+ 5-fold
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resultados obtenidos con random forest:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{red} Número de variables empleado & Error 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 5 & 0.06 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 50 & 0.02 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 100 & 0.02
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 300 & 0.02 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 400 & 0.02 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 561 & 0.02 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+No se obtienen mejoras considerables al entrenar random forest con más de
+ 50 variables.
+ Posiblemente el algoritmo esté limitando la cantidad de variables o podando
+ los árboles del ensamble para no sobreajustar los resultados.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resultados obtenidos con SVM:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|r|r|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{red} Número de variables empleado & Error 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 5 & 0.1 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 50 & 0.03 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 100 & 0.03
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 300 & 0.02 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 400 & 0.014 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+rowcolor{orange} 561 & 0.014 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se observan mejoras significativas en los resultados a medida que se incrementa
+ el número de variables tomadas.
+ Dado que los resultados no mejoran a partir de haber tomado 400 variables,
+ se concluye que al menos las últimas 161 variables no aportan información
+ nueva al algoritmo que le permita mejorar su decisión.
+\end_layout
+
+\end_body
+\end_document

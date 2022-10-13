@@ -1,0 +1,2060 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Práctica 1:Criptografía y PassCracking}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+underline{Alumno:}
+\end_layout
+
+\end_inset
+
+ Pablo Alonso
+\end_layout
+
+\begin_layout Subsection*
+1)
+\end_layout
+
+\begin_layout Standard
+El abecedario {a,..,z,0,..,9} consta de 35 símbolos, es decir que a cada posición
+ de una cadena le podemos asignar 1 de 35 símbolos, luego existen 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$35^{n}$
+\end_layout
+
+\end_inset
+
+ cadenas de longitud n.
+ Si consideramos 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$n
+\backslash
+leq20:
+\backslash
+
+\backslash
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ $
+\backslash
+sum_{n=0}^{20} 35^n  = 6697192216764219929$
+\end_layout
+
+\end_inset
+
+, considerando la cadena vacía cuando 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n=0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename image.png
+	width 10cm
+	height 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El siguiente programa está hecho en java y como único argumento toma el
+ tamaño de las cadenas, luego genera todas las cadenas posibles de ese tamaño
+ usando el siguiente alfabeto: {a ..
+ z,0 ..
+ 9,A ..
+ Z} y escribe cada una en un archivo de texto.
+ Notar que se hace uso de la recursión:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=java,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+import java.io.FileWriter; 
+\end_layout
+
+\begin_layout Plain Layout
+
+import java.io.IOException;
+\end_layout
+
+\begin_layout Plain Layout
+
+class GenWords{
+\end_layout
+
+\begin_layout Plain Layout
+
+  //Ascii codes
+\end_layout
+
+\begin_layout Plain Layout
+
+  static final int abc = 97;
+\end_layout
+
+\begin_layout Plain Layout
+
+  static final int num = 48;
+\end_layout
+
+\begin_layout Plain Layout
+
+  static final int Abc = 65;
+\end_layout
+
+\begin_layout Plain Layout
+
+  static FileWriter writer;  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  public static void main(String[] args){
+\end_layout
+
+\begin_layout Plain Layout
+
+    int size = Integer.parseInt(args[0]);
+\end_layout
+
+\begin_layout Plain Layout
+
+    char[]  word = new char[size];
+\end_layout
+
+\begin_layout Plain Layout
+
+	try{
+\end_layout
+
+\begin_layout Plain Layout
+
+      writer = new FileWriter("diccionario.txt");
+\end_layout
+
+\begin_layout Plain Layout
+
+      combination(word,0,size);
+\end_layout
+
+\begin_layout Plain Layout
+
+      writer.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+    }  catch(IOException e){
+\end_layout
+
+\begin_layout Plain Layout
+
+	      e.printStackTrace();
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  static void combination(char[] word,int pos,int size) throws IOException{
+\end_layout
+
+\begin_layout Plain Layout
+
+     	 for (int i = 0;i<25;i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+                word[pos] = (char) (Abc+i);
+\end_layout
+
+\begin_layout Plain Layout
+
+	            if(pos == size-1) writer.write(new String(word)+"
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+		        else combination(word,pos+1,size);
+\end_layout
+
+\begin_layout Plain Layout
+
+	      }
+\end_layout
+
+\begin_layout Plain Layout
+
+	    
+\end_layout
+
+\begin_layout Plain Layout
+
+	     for (int i = 0 ;i<25;i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+              word[pos] = (char) (abc+i);
+\end_layout
+
+\begin_layout Plain Layout
+
+	          if(pos == size-1) writer.write(new String(word)+"
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+		      else combination(word,pos+1,size);
+\end_layout
+
+\begin_layout Plain Layout
+
+	     }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    for (int i = 0; i < 10;i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+              word[pos] = (char) (num+i);
+\end_layout
+
+\begin_layout Plain Layout
+
+              if(pos == size-1) writer.write(new String(word)+"
+\backslash
+n");
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	     	else combination(word,pos+1,size);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+  }   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  static void print(String s){
+\end_layout
+
+\begin_layout Plain Layout
+
+    System.out.println(s);
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+2)
+\end_layout
+
+\begin_layout Standard
+El siguiente comando guarda el código de los distintos hashes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+hashcat -h | grep MD4 -A320 | cut -d "|" -f1 | sort | uniq > modes
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El siguiente script determina hashes candidatos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+echo 941d4637d8223d958d7f2324572c7e319dcea01f > hash
+\end_layout
+
+\begin_layout Plain Layout
+
+echo hola > example
+\end_layout
+
+\begin_layout Plain Layout
+
+for m in $(cat modes);
+\end_layout
+
+\begin_layout Plain Layout
+
+do
+\end_layout
+
+\begin_layout Plain Layout
+
+	hashcat -m $i hash example;
+\end_layout
+
+\begin_layout Plain Layout
+
+	if [ $? -eq 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	then
+\end_layout
+
+\begin_layout Plain Layout
+
+		break 	
+\end_layout
+
+\begin_layout Plain Layout
+
+    fi 
+\end_layout
+
+\begin_layout Plain Layout
+
+done 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notar que podemos usar el exit code para determinar si el algoritmo hizo
+ una búsqueda exahustiva, lo que nos da la pauta de que el algoritmo reconoce
+ el formato del hash, lo que lo convierte en un candidato.
+ El siguiente script toma cada diccionario alojado en la ruta 
+\begin_inset Quotes eld
+\end_inset
+
+path/to/dics
+\begin_inset Quotes erd
+\end_inset
+
+ y lo usa como argumento.
+ Una forma de ataque es combinator (-a 1):
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dir="path/to/dics
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+encontro=0
+\end_layout
+
+\begin_layout Plain Layout
+
+for m in $(cat modes); do
+\end_layout
+
+\begin_layout Plain Layout
+
+	for i in $(ls $dir):
+\end_layout
+
+\begin_layout Plain Layout
+
+	do
+\end_layout
+
+\begin_layout Plain Layout
+
+		for j in $(ls $dir):
+\end_layout
+
+\begin_layout Plain Layout
+
+		do
+\end_layout
+
+\begin_layout Plain Layout
+
+		   hashcat -m $m -a 1  "hash.txt"  "$dir$i" "$dir$j";
+\end_layout
+
+\begin_layout Plain Layout
+
+		   #if hashcat finish with 0 so we found the pass
+\end_layout
+
+\begin_layout Plain Layout
+
+	   	 if [ $? -eq 0 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	   	then
+\end_layout
+
+\begin_layout Plain Layout
+
+                  encontro=1
+\end_layout
+
+\begin_layout Plain Layout
+
+	   		   break
+\end_layout
+
+\begin_layout Plain Layout
+
+		   fi
+\end_layout
+
+\begin_layout Plain Layout
+
+		done
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		if [ $encontro -eq 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+		then
+\end_layout
+
+\begin_layout Plain Layout
+
+            #the pass was found so we break the loop
+\end_layout
+
+\begin_layout Plain Layout
+
+			break
+\end_layout
+
+\begin_layout Plain Layout
+
+		fi
+\end_layout
+
+\begin_layout Plain Layout
+
+	done
+\end_layout
+
+\begin_layout Plain Layout
+
+    if [ $encontro -eq 1 ];
+\end_layout
+
+\begin_layout Plain Layout
+
+	then
+\end_layout
+
+\begin_layout Plain Layout
+
+      #the pass was found so we break the loop
+\end_layout
+
+\begin_layout Plain Layout
+
+	  break
+\end_layout
+
+\begin_layout Plain Layout
+
+	fi
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se puede usar el exit code para identificar si el hash fue crackeado o no.
+\end_layout
+
+\begin_layout Subsection*
+3)
+\end_layout
+
+\begin_layout Standard
+Ordenar los aliases
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+$ sort aliases.txt > aliasesSort
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El siguiente script genera una lista (unicas) de aliases que no estan en
+ ningún diccionario de los descargados
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+$  for dic in $(ls words/);
+\end_layout
+
+\begin_layout Plain Layout
+
+   do sort words/$dic > dicc;
+\end_layout
+
+\begin_layout Plain Layout
+
+      comm -13 aliasesSort $dicc  >> unicas;
+\end_layout
+
+\begin_layout Plain Layout
+
+   done
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+4)
+\end_layout
+
+\begin_layout Standard
+* Pipal:
+\end_layout
+
+\begin_layout Itemize
+Para determinar la longitud más frecuente de password observamos en el output
+ la sección Password length (count ordered).
+\end_layout
+
+\begin_layout Itemize
+Para determinar los 10 sufijos de 4 dígitos más usados observamos la sección
+ Last 4 digits (Top 10).
+\end_layout
+
+\begin_layout Standard
+*Idea propia:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+$ for word in $(cat dic);do echo ${#word} >> lengths ;done
+\end_layout
+
+\begin_layout Plain Layout
+
+$ cat lengths | sort -nr | head -10
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+$ cat rockyou-75.txt | rev | cut -c -4 | rev | sort | uniq -c |
+\end_layout
+
+\begin_layout Plain Layout
+
+sort -r | head -10
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+5)
+\end_layout
+
+\begin_layout Standard
+* Se observan las siguientes relaciones:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n_{1}=pq\iff p=\frac{n_{1}}{q}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $n_{2}=qr\iff q=\frac{n_{2}}{r}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $n_{3}=pr\iff r=\frac{n_{3}}{p}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego podemos reescribir p:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p=\frac{n1}{\frac{n2}{r}}=\frac{n_{1}}{\frac{n2}{(\frac{n_{3}}{p})}}=\frac{n_{1}}{\frac{n_{2}p}{n3}}=\frac{n_{1n3}}{n_{2}p}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\therefore p=\sqrt{\frac{n_{1}n_{3}}{n_{2}}}=\frac{\sqrt{n_{1}n_{3}}}{\sqrt{n_{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con el siguiente código python se calculan p,q,r y se desencriptan los mensajes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=python,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+from decimal import *
+\end_layout
+
+\begin_layout Plain Layout
+
+getcontext().prec = 2**24
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+x = Decimal(n1*n3).sqrt()
+\end_layout
+
+\begin_layout Plain Layout
+
+y = Decimal(n2).sqrt()
+\end_layout
+
+\begin_layout Plain Layout
+
+p = x/y
+\end_layout
+
+\begin_layout Plain Layout
+
+q = int(Decimal(n1)/p)
+\end_layout
+
+\begin_layout Plain Layout
+
+p = int(p)
+\end_layout
+
+\begin_layout Plain Layout
+
+r = int(Decimal(n2)/Decimal(q))
+\end_layout
+
+\begin_layout Plain Layout
+
+e = 65537
+\end_layout
+
+\begin_layout Plain Layout
+
+phi = (p-1)*(q-1)
+\end_layout
+
+\begin_layout Plain Layout
+
+d = modinv(e,phi)
+\end_layout
+
+\begin_layout Plain Layout
+
+m1 = pow(c1, d, n1)
+\end_layout
+
+\begin_layout Plain Layout
+
+m2 = pow(c2,d,n2)
+\end_layout
+
+\begin_layout Plain Layout
+
+m3 = pow(c3,d,n3)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los mensajes son:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=python,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+m1=655110023755819564797655749525392186125538153101543948010905575080713249
+\end_layout
+
+\begin_layout Plain Layout
+
+046911103308912166297897226798507194683726315607538236001368109681679401912
+\end_layout
+
+\begin_layout Plain Layout
+
+864036535112428993366398006471634095402076135877570905373834337927450028700
+\end_layout
+
+\begin_layout Plain Layout
+
+229991545720265159456283718604215128620525374588387244266850556191933032631
+\end_layout
+
+\begin_layout Plain Layout
+
+664819143376574316965574289055222133380574172983149220499399076342320230917
+\end_layout
+
+\begin_layout Plain Layout
+
+430160324927973545833922244998545962016201991626217872652646086697052536641
+\end_layout
+
+\begin_layout Plain Layout
+
+153930941868724727817520129098452989938163195542893814831660603234314369524
+\end_layout
+
+\begin_layout Plain Layout
+
+434932564770877526927573653497555070751048252082021298276073873481706733950
+\end_layout
+
+\begin_layout Plain Layout
+
+694911333482689318
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+m2=265432368935907062254855020532249419259919027685794211056903989497452419
+\end_layout
+
+\begin_layout Plain Layout
+
+519066180614890253086645959199279444366618667864600983534634122121105638975
+\end_layout
+
+\begin_layout Plain Layout
+
+606593266110860038035355391575568546331493949613103336596972510981184289956
+\end_layout
+
+\begin_layout Plain Layout
+
+828197801185152642988501053084440017574823734040938524383813503996700521599
+\end_layout
+
+\begin_layout Plain Layout
+
+168101917803281094171349245480780845968628959583676057453644837198071643060
+\end_layout
+
+\begin_layout Plain Layout
+
+064308080372750259674081863124637541422684748035713449215373216137337533312
+\end_layout
+
+\begin_layout Plain Layout
+
+041003717266452809128999830150812337366171885228431749969423879571446522461
+\end_layout
+
+\begin_layout Plain Layout
+
+358201292662706453726824273203050505448654479166652293790780853833048241538
+\end_layout
+
+\begin_layout Plain Layout
+
+7481638122224084564
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+m3=456020304146735579465168545335233604400605719273647091842881240564397270
+\end_layout
+
+\begin_layout Plain Layout
+
+279980164585368913294370114589923345886342793326151610870216661500102812887
+\end_layout
+
+\begin_layout Plain Layout
+
+122032369442921625156166786332437574669169483748490713323159959702859738567
+\end_layout
+
+\begin_layout Plain Layout
+
+812720104969016568300268972166686061846972972686113651488495962563924782639
+\end_layout
+
+\begin_layout Plain Layout
+
+915592912115976265432518884909657639594496506093750744785784362955899890165
+\end_layout
+
+\begin_layout Plain Layout
+
+395869966221621687052679133951862773740309962190991248381839528959630688085
+\end_layout
+
+\begin_layout Plain Layout
+
+997459831733335513087596086877614387938391729645174327485741682916903241409
+\end_layout
+
+\begin_layout Plain Layout
+
+408278609514786483228863663634209211553087561487993859835800794573345878434
+\end_layout
+
+\begin_layout Plain Layout
+
+2878622231445477092
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+6)
+\end_layout
+
+\begin_layout Standard
+La pass es GaAVCK9r3K.
+\end_layout
+
+\begin_layout Standard
+Se observa una demora que se produce en la respuesta del servidor cuando
+ ingresamos un caracter en la posición correcta de la password y que es
+ mayor a las demoras que se producen cuando ingresamos un caracter en la
+ posición incorrecta o que no pertenece a la password.
+\end_layout
+
+\begin_layout Subsection*
+a- 
+\end_layout
+
+\begin_layout Standard
+El siguiente script está hecho en python y no toma ningún argumento.
+ La idea básica es crear tantos threads como letras tenga el alfabeto que
+ estamos usando, determinar que thread tiene una demora mayor en realizar
+ su tarea y tomar el caracter que se le asigno a dicho thread como siguiente
+ letra de la password.
+ La salida del algoritmo se da cuando un thread determina en la respuesta
+ dada por el servidor que ah dado con la password, levantando la bandera
+ correspondiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=python,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+import time
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+import multiprocessing
+\end_layout
+
+\begin_layout Plain Layout
+
+import ctypes
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dir="Trash/"
+\end_layout
+
+\begin_layout Plain Layout
+
+magicWord="Felicitaciones!"
+\end_layout
+
+\begin_layout Plain Layout
+
+manager = multiprocessing.Manager()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def test(word,times,found):
+\end_layout
+
+\begin_layout Plain Layout
+
+    path = dir+word
+\end_layout
+
+\begin_layout Plain Layout
+
+    command = "echo "+word+" | nc 143.0.100.198 60123 > "+path
+\end_layout
+
+\begin_layout Plain Layout
+
+    start = time.time()
+\end_layout
+
+\begin_layout Plain Layout
+
+    #execute command and wait exit
+\end_layout
+
+\begin_layout Plain Layout
+
+    os.popen(command).read()
+\end_layout
+
+\begin_layout Plain Layout
+
+    end = time.time()
+\end_layout
+
+\begin_layout Plain Layout
+
+    t = end-start
+\end_layout
+
+\begin_layout Plain Layout
+
+    #store char and time
+\end_layout
+
+\begin_layout Plain Layout
+
+    times += [(word[-1],t)]
+\end_layout
+
+\begin_layout Plain Layout
+
+    # search for the magic word and get up the flag 
+\end_layout
+
+\begin_layout Plain Layout
+
+    # if it is there
+\end_layout
+
+\begin_layout Plain Layout
+
+    with open(path) as res:
+\end_layout
+
+\begin_layout Plain Layout
+
+        for l in res:
+\end_layout
+
+\begin_layout Plain Layout
+
+            if magicWord in l.rstrip():
+\end_layout
+
+\begin_layout Plain Layout
+
+                found.value = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    os.remove(path)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def genChar(x,y):     
+\end_layout
+
+\begin_layout Plain Layout
+
+    return  [chr(i) for i in range(x,y)]      
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def buscar():
+\end_layout
+
+\begin_layout Plain Layout
+
+  #create dictionary
+\end_layout
+
+\begin_layout Plain Layout
+
+  dicc = genChar(48,58) + genChar(65,91) + genChar(97,123)
+\end_layout
+
+\begin_layout Plain Layout
+
+  #password
+\end_layout
+
+\begin_layout Plain Layout
+
+  p = ""
+\end_layout
+
+\begin_layout Plain Layout
+
+  # flag of exit
+\end_layout
+
+\begin_layout Plain Layout
+
+  found = multiprocessing.Value(ctypes.c_bool,False)
+\end_layout
+
+\begin_layout Plain Layout
+
+  while (not bool(found.value)):
+\end_layout
+
+\begin_layout Plain Layout
+
+            threads = []
+\end_layout
+
+\begin_layout Plain Layout
+
+            times = manager.list()
+\end_layout
+
+\begin_layout Plain Layout
+
+            # run a thread for each character
+\end_layout
+
+\begin_layout Plain Layout
+
+            for c in dicc:
+\end_layout
+
+\begin_layout Plain Layout
+
+                 x = multiprocessing.Process(target=test,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                             args=(p+c,times,found))
+\end_layout
+
+\begin_layout Plain Layout
+
+                 x.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+                 threads += [x]
+\end_layout
+
+\begin_layout Plain Layout
+
+             #wait the exit of all threads
+\end_layout
+
+\begin_layout Plain Layout
+
+            for t in threads:
+\end_layout
+
+\begin_layout Plain Layout
+
+                  t.join()
+\end_layout
+
+\begin_layout Plain Layout
+
+            #compute the next character of the pass
+\end_layout
+
+\begin_layout Plain Layout
+
+            m = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+            char = ""
+\end_layout
+
+\begin_layout Plain Layout
+
+            for (cc,tt) in times:
+\end_layout
+
+\begin_layout Plain Layout
+
+                 if(tt > m):
+\end_layout
+
+\begin_layout Plain Layout
+
+                    m = tt
+\end_layout
+
+\begin_layout Plain Layout
+
+                    char = cc
+\end_layout
+
+\begin_layout Plain Layout
+
+            p += char
+\end_layout
+
+\begin_layout Plain Layout
+
+  print("La pass es "+p)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+buscar()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+b-
+\end_layout
+
+\begin_layout Standard
+Mejor tiempo: El mejor tiempo se da cuando descubrimos cada caracter en
+ el primer intento.
+\end_layout
+
+\begin_layout Standard
+Asumiendo que cada caracter ingresado correctamente generea una demora q
+ , el mejor tiempo es 45 q.
+\end_layout
+
+\begin_layout Standard
+Matemáticamente, si la password tiene longitud n: 
+\begin_inset Formula $\frac{n(n-1)q}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Peor tiempo: El peor tiempo se da cuando recorremos todos los caracteres
+ del alfabeto en cada posición de la password para encontrar el correcto.
+ Suponiendo que no existe demora en la respuesta del servidor en caso de
+ ingresar un caracter erróneo y que la demora es de q por cada caracter
+ correcto, el peor tiempo si la password tiene longitud n es 
+\begin_inset Formula $q(n^{2}+1)$
+\end_inset
+
+, para este caso 1001 q.
+\end_layout
+
+\begin_layout Subsection*
+7)
+\end_layout
+
+\begin_layout Standard
+Se usaron los siguientes modos de ataques:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ataque simple de diccionario:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+DIR="../Ej3/words/"
+\end_layout
+
+\begin_layout Plain Layout
+
+for i in  $(ls $DIR)
+\end_layout
+
+\begin_layout Plain Layout
+
+do
+\end_layout
+
+\begin_layout Plain Layout
+
+	echo "ARCHIVO::::::$DIR$i"
+\end_layout
+
+\begin_layout Plain Layout
+
+	hashcat -m 0 -a 0 hashes.txt "$DIR$i"
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ataque combinando diccionarios:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+DIR="../Ej3/words/"
+\end_layout
+
+\begin_layout Plain Layout
+
+for i in $(ls $DIR) do
+\end_layout
+
+\begin_layout Plain Layout
+
+	for j in  $(ls $DIR)
+\end_layout
+
+\begin_layout Plain Layout
+
+	do
+\end_layout
+
+\begin_layout Plain Layout
+
+		echo "ARCHIVO::::::$DIR$i $DIR$j"
+\end_layout
+
+\begin_layout Plain Layout
+
+		hashcat -m 0 -a 1 hashes.txt "$DIR$i" "$DIR$j"
+\end_layout
+
+\begin_layout Plain Layout
+
+	done
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ataque hibrido combinando diccionarios con máscaras
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[language=bash,caption={}]
+\end_layout
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+DIR="../Ej3/words/"
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for j in $(ls $DIR)
+\end_layout
+
+\begin_layout Plain Layout
+
+do
+\end_layout
+
+\begin_layout Plain Layout
+
+  echo "ARCHIVO::::::$DIR$i $DIR$j"
+\end_layout
+
+\begin_layout Plain Layout
+
+  hashcat -m 0 -a 6 hashes.txt "$DIR$j" -1?l?u?d ?1?1?1?1 --increment
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se recuperaron 6695045/16532955 passwords (40.5%) en 2 días de búsqueda.
+\end_layout
+
+\end_body
+\end_document

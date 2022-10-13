@@ -1,0 +1,223 @@
+Coupled
+    {
+    Type = Root
+    Name = ej4
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 600; 600
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = procesador
+            Ports = 1 ; 1
+            Path = generador/procesador2.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -10005 ; -135
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = generador0
+            Ports = 0 ; 1
+            Path = generador/aleatorio.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -16980 ; 0
+                Dimension = 825 ; 450
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                JMIN = Val; 1 ; Tiempo m�nimo
+                JMAX = Val; 2 ; Tiempo m�ximo
+                TMAX = Val; 2 ; Valor m�ximo
+                }
+            }
+        Atomic
+            {
+            Name = sensor
+            Ports = 2 ; 1
+            Path = generador/sensor.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -9030 ; 2895
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = cola
+            Ports = 2 ; 1
+            Path = generador/cola.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -13455 ; 45
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = To Disk0
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -6705 ; 2895
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; sensor.csv ; file name
+                }
+            }
+        Atomic
+            {
+            Name = To Disk1
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -15630 ; 2070
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; generador.csv ; file name
+                }
+            }
+        Point
+            {
+            ConectedLines = 2 ; 4 ; 5
+            ConectedExtrems = Org ; Org ; Org
+            Position = -11625 ; 225
+            }
+        Point
+            {
+            ConectedLines = 1 ; 6 ; 7
+            ConectedExtrems = Org ; Org ; Org
+            Position = -14550 ; 225
+            }
+        Point
+            {
+            ConectedLines = 7 ; 9 ; 10
+            ConectedExtrems = Org ; Org ; Org
+            Position = -15975 ; 225
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -13590 ; -13590 ; -14550
+            PointY = 225 ; 225 ; 225
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -12675 ; -11625 ; -11625
+            PointY = 375 ; 375 ; 225
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; 0
+            Sink = Cmp ;  4 ;  2 ; -1
+            PointX = -9225 ; -9225 ; -13800 ; -13800 ; -13590
+            PointY = 225 ; 1725 ; 1725 ; 525 ; 525
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  2 ; -1
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -9165 ; -11625 ; -11625
+            PointY = 3375 ; 3375 ; 225
+            }
+        Line
+            {
+            Source = Pnt ;  1 ; -1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -11625 ; -11625 ; -10140
+            PointY = 225 ; 225 ; 225
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -9165 ; -14550 ; -14550
+            PointY = 3075 ; 3075 ; 225
+            }
+        Line
+            {
+            Source = Pnt ;  2 ; -1 ; 0
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = -14550 ; -14550 ; -15975
+            PointY = 225 ; 225 ; 225
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; -1
+            Sink = Cmp ;  3 ;  1 ; 0
+            PointX = -6840 ; -6840 ; -8250
+            PointY = 3225 ; 3225 ; 3225
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; -1
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = -15765 ; -15975 ; -15975
+            PointY = 2400 ; 2400 ; 225
+            }
+        Line
+            {
+            Source = Pnt ;  3 ; -1 ; 0
+            Sink = Cmp ;  2 ;  1 ; 0
+            PointX = -15975 ; -15975 ; -16050
+            PointY = 225 ; 225 ; 225
+            }
+        }
+    }
